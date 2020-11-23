@@ -1,0 +1,556 @@
+/*
+=========================================
+- Project Name  : BTis
+- Date Created  : 8 / 10 / 2020
+- Author        : Andika Permana Sidiq
+=========================================
+*/
+@font-face {
+  font-family: 'roboto';
+  src: url("../font/Roboto-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'roboto';
+  src: url("../font/Roboto-Light.woff") format("woff");
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'roboto';
+  src: url("../font/Roboto-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: 800;
+}
+
+* {
+  font-family: "roboto";
+  transition: all 0.3s ease;
+}
+
+body {
+  background-color: #24292e;
+}
+
+nav {
+  z-index: 2;
+}
+
+nav i {
+  font-size: 0.2rem;
+}
+
+nav .dropdown-item {
+  font-size: 15px;
+}
+
+section {
+  padding: 7.5vmax 0;
+}
+
+section h1 {
+  font-weight: bolder;
+  margin-bottom: 79px;
+}
+
+.bg-darkMedium {
+  background-color: #0a4a4a;
+  padding: 0.6rem;
+  border-radius: 10px;
+}
+
+.mb-30 {
+  margin-bottom: 20%;
+}
+
+.hv-100 {
+  height: 100vh;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.btn-dark-mediun {
+  background-color: #24292e;
+  color: #ffffff;
+}
+
+.btn-dark-mediun:hover {
+  color: #ffffff;
+}
+
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.text-blue {
+  color: #43b1f0;
+}
+
+.text-bold {
+  font-weight: bolder;
+  font-size: 25px;
+  color: #f6f6f6;
+}
+
+.form-control {
+  border: 1px solid #24292e6c;
+  border-radius: 5px;
+  padding: 1.3rem;
+  color: #0a4a4a;
+}
+
+.form-control::placeholder {
+  color: #cbc8c8;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group label {
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #0a4a4a;
+}
+
+.form-group p {
+  font-weight: 300;
+}
+
+.form-group .icon-eye {
+  position: absolute;
+  top: 0.5rem;
+  right: 1.5rem;
+}
+
+.form-group .icon-eye #check {
+  position: absolute;
+  width: 1.5rem;
+  height: 2rem;
+  right: 0.02rem;
+  opacity: 0;
+}
+
+.form-group .icon {
+  position: absolute;
+  top: 0.6rem;
+  left: 1rem;
+}
+
+.form-group input[type="date"] {
+  height: 0.5%;
+}
+
+.form-group .calendar {
+  top: 1.2rem;
+}
+
+.input-profile {
+  padding-left: 3.5em !important;
+}
+
+.input-profile::placeholder {
+  color: #0a4a4a;
+}
+
+.r-produk {
+  width: 35%;
+}
+
+.r-produk .d-flex img {
+  width: 40%;
+  height: 30%;
+  border-radius: 10px;
+}
+
+.r-produk .d-flex h2 {
+  text-transform: uppercase;
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.r-produk .d-flex h3 {
+  font-size: 20px;
+}
+
+.r-produk .d-flex p {
+  margin-bottom: 0;
+}
+
+.col-md-6 .r-produk {
+  width: 80%;
+}
+
+.p-produk {
+  width: 25%;
+  border-radius: 10px;
+}
+
+.my-auto h2 {
+  font-size: 20px;
+}
+
+table td img {
+  border-radius: 5px;
+}
+
+.modal .modal-header {
+  border: none;
+}
+
+.modal .modal-header h5 {
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+.modal .modal-body img {
+  width: 40%;
+  border-radius: 100%;
+}
+
+.modal .modal-footer {
+  border: none;
+}
+
+section.info-users a {
+  text-decoration: none;
+}
+
+section.info-users a:hover {
+  color: #43b1f0 !important;
+}
+
+.list-group .list-group-item {
+  background-color: #24292e;
+  border-color: transparent;
+  padding: 0.5rem;
+}
+
+.list-group .list-group-item a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+footer {
+  position: relative;
+  padding: 7.5vmax 0;
+  color: #f6f6f6;
+}
+
+footer h2 {
+  letter-spacing: 2px;
+}
+
+footer p {
+  font-style: italic;
+  font-weight: 300;
+}
+
+footer a {
+  color: inherit;
+}
+
+footer a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.people-login {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1.041);
+  background-image: url(../img/login-bg.png);
+}
+
+.people-registrasi {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1.041);
+  background-image: url(../img/registrasi-bg.png);
+}
+
+.login-box {
+  width: 25vmax;
+}
+
+.login-box .logo {
+  margin-bottom: 5rem;
+}
+
+.login-box .logo img {
+  width: 200px;
+}
+
+.login-box .main h3 {
+  font-size: 30px;
+  letter-spacing: 2px;
+  font-weight: 900;
+  color: #0a4a4a;
+}
+
+.login-box .main p {
+  font-size: 18px;
+  color: #cbc8c8;
+  font-weight: 300;
+}
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  padding-top: 10rem;
+  z-index: 1;
+}
+
+.hero .btn-disc {
+  position: absolute;
+  background-color: #eaff2b;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  z-index: 1;
+}
+
+.hero .btn-disc span {
+  font-size: 1.5rem;
+  color: #8da04c;
+}
+
+.hero .hero-img {
+  transform: rotate(-1deg);
+  position: relative;
+  width: 80%;
+}
+
+.hero .d-flex h2 {
+  font-weight: 700;
+}
+
+.hero h2.display-5,
+.hero h5 {
+  font-weight: bolder;
+}
+
+.hero h5 {
+  margin-top: 1.5rem;
+}
+
+.hero p {
+  font-weight: 500;
+}
+
+.hero .form-control {
+  width: 25%;
+}
+
+.hero .d-flex .img-profile {
+  width: 50%;
+  border-radius: 100%;
+  object-fit: cover;
+  box-shadow: 3px 6px 12px rgba(10, 74, 74, 0.1);
+}
+
+.hero-user {
+  margin-top: -5rem;
+  height: 100%;
+}
+
+.page404 {
+  width: 100%;
+  height: 100vh;
+  color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page404 h1 {
+  font-weight: bolder;
+  letter-spacing: 1.5rem;
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.page404 h1 span {
+  font-weight: 300;
+  position: absolute;
+  left: 5rem;
+  letter-spacing: 0;
+  display: inline-block;
+  transform: rotate(90deg);
+  color: #8da04c;
+  animation: upDown 2s ease infinite;
+}
+
+.page404 p {
+  font-size: 1.3rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .3em;
+}
+
+.page404 button a {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: inherit;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+@keyframes upDown {
+  0% {
+    top: -5rem;
+  }
+  50% {
+    top: -3rem;
+  }
+  100% {
+    top: -5rem;
+  }
+}
+
+.w-80 {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10rem;
+}
+
+.w-80 .card-body h3 {
+  font-size: 1rem;
+  font-weight: bolder;
+  color: #0a4a4a;
+  text-transform: uppercase;
+  margin-bottom: 1px;
+}
+
+.w-80 .card-body img {
+  width: 90%;
+}
+
+.w-80 .card-body p {
+  font-weight: 100;
+}
+
+.w-80 .card-body .btn-cart {
+  position: absolute;
+}
+
+.w-80 .card-body .btn-cart a {
+  font-weight: 100;
+}
+
+.w-80 .card-body .btn-cart-produk {
+  position: absolute;
+}
+
+.w-80 .card-body .btn-cart-produk a {
+  font-weight: 100;
+}
+
+.w-80 .card-body .btn-disc {
+  position: absolute;
+  right: -1.5rem;
+  top: -1.5rem;
+  background-color: #eaff2b;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.w-80 .card-body .btn-disc span {
+  font-size: 1.5rem;
+  color: #8da04c;
+}
+
+.w-80 .btn-delete {
+  position: absolute;
+  bottom: -5rem;
+}
+
+.w-80 .btn-delete a {
+  font-weight: 100;
+}
+
+.card-body h2.text-uppercase {
+  font-size: 1em;
+}
+
+.card-body select.form-control {
+  padding: 0 1rem;
+}
+
+.card-body .informasi-alamat {
+  font-size: .8em;
+}
+
+@media screen and (max-width: 750px) {
+  .login-box {
+    width: 50vmax;
+  }
+  .people-login,
+  .people-registrasi {
+    display: none;
+  }
+  .navbar-toggler {
+    background: none;
+    border: none;
+  }
+  .navbar-toggler #show,
+  .navbar-toggler #hidden {
+    color: #ffffff !important;
+  }
+  .hero {
+    padding-top: 4rem;
+    height: 100%;
+  }
+  .hero .img-profile {
+    margin-bottom: 2rem;
+  }
+  .hero .t-center {
+    text-align: center;
+  }
+  .hero h2 {
+    font-size: 1.9rem;
+  }
+  .card {
+    width: 100%;
+    margin-bottom: 5rem;
+  }
+  .card .card-body .btn-disc {
+    right: -1rem;
+    top: -1rem;
+    padding: 8px;
+  }
+  .card .card-body .btn-disc span {
+    font-size: 1rem;
+  }
+  section.info-users h5 {
+    font-size: 1rem;
+  }
+  section.info-users .r-produk {
+    width: 100%;
+  }
+  .flex-column h1 {
+    font-size: 1.5rem;
+  }
+  .flex-column .group {
+    flex-direction: column;
+  }
+  .flex-column .group a {
+    padding-top: 1em;
+  }
+  .row {
+    overflow: auto;
+  }
+}
+/*# sourceMappingURL=main.css.map */

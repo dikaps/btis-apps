@@ -1,0 +1,83 @@
+@media screen and (max-width: 750px) {
+  .login-box {
+    width: 50vmax;
+  }
+
+  .people-login,
+  .people-registrasi {
+    display: none;
+  }
+
+  .navbar-toggler {
+    background: none;
+    border: none;
+
+    #show,
+    #hidden {
+      color: $white !important;
+    }
+  }
+
+  .hero {
+    padding-top: 4rem;
+    height: 100%;
+
+    .img-profile {
+      margin-bottom: 2rem;
+    }
+
+    .t-center {
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.9rem;
+    }
+  }
+
+  .card {
+    width: 100%;
+    margin-bottom: 5rem;
+
+    // margin-top: 5rem;
+    .card-body {
+      .btn-disc {
+        right: -1rem;
+        top: -1rem;
+        padding: 8px;
+
+        span {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  section.info-users {
+    h5 {
+      font-size: 1rem;
+    }
+
+    .r-produk {
+      width: 100%;
+    }
+  }
+
+  .flex-column {
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    .group {
+      flex-direction: column;
+
+      a {
+        padding-top: 1em;
+      }
+    }
+  }
+
+  .row {
+    overflow: auto;
+  }
+}

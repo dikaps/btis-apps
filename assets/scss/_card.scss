@@ -1,0 +1,73 @@
+@import "color";
+@import "mixin";
+
+.w-80 {
+	width: 80%;
+	margin: 0 auto;
+	margin-bottom: 10rem;
+
+	.card-body {
+
+		h3 {
+			font-size: 1rem;
+			font-weight: bolder;
+			color: $darkMedium;
+
+			text-transform: uppercase;
+			margin-bottom: 1px;
+		}
+
+		img {
+			width: 90%;
+		}
+
+		p {
+			font-weight: 100;
+		}
+
+		.btn-cart {
+			@include absolute-btn();
+		}
+
+		.btn-cart-produk {
+			@include absolute-btn();
+		}
+
+
+
+		.btn-disc {
+			position: absolute;
+			right: -1.5rem;
+			top: -1.5rem;
+			background-color: $yellow;
+			padding: 10px;
+			border-radius: 5px;
+			text-align: center;
+
+			span {
+				font-size: 1.5rem;
+				color: $red;
+			}
+		}
+	}
+
+	.btn-delete {
+		@include absolute-btn();
+		bottom: -5rem;
+	}
+}
+
+.card-body {
+	h2.text-uppercase {
+
+		font-size: 1em;
+	}
+
+	select.form-control {
+		padding: 0 1rem;
+	}
+
+	.informasi-alamat {
+		font-size: .8em;
+	}
+}

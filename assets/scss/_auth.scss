@@ -1,0 +1,36 @@
+.people-login {
+	@include full-image-auth();
+	background-image: url(../img/login-bg.png);
+}
+
+.people-registrasi {
+	@include full-image-auth();
+	background-image: url(../img/registrasi-bg.png);
+}
+
+.login-box {
+	width: 25vmax;
+
+	.logo {
+		margin-bottom: 5rem;
+
+		img {
+			width: 200px;
+		}
+	}
+
+	.main {
+		h3 {
+			font-size: 30px;
+			letter-spacing: 2px;
+			font-weight: 900;
+			color: $darkMedium;
+		}
+
+		p {
+			font-size: 18px;
+			color: $semiGray;
+			font-weight: 300;
+		}
+	}
+}
