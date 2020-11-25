@@ -76,14 +76,13 @@
                 <?= $kontak['telepon']; ?>
               </td>
               <td>
-
-                <a href="#" class="btn btn-sm btn-outline-info mb-2" data-toggle="tooltip" data-placement="top" title="Detail Kontak" id="detail">
+                <button type="button" data-toggle="modal" data-target="#modal-alamat" class="btn btn-sm btn-outline-info mb-2 info-kontak">
                   <i data-feather="info"></i>
-                </a>
+                </button>
 
-                <a href="#" class="btn btn-sm btn-outline-warning mb-2" data-toggle="tooltip" data-placement="top" title="Edit Alamat" id="edit">
+                <button type="button" data-toggle="modal" data-target="#modal-alamat" class="btn btn-sm btn-outline-warning mb-2 edit-kontak">
                   <i data-feather="edit"></i>
-                </a>
+                </button>
               </td>
             </tr>
           </tbody>
@@ -91,8 +90,7 @@
       </div>
 
       <div id="info-bank" class="d-none">
-        <button type="button" data-toggle="modal" data-target="#modal-bank" class="btn btn-outline-light mt-3 mb-3">Tambah
-          Akun Bank</button>
+        <button type="button" data-toggle="modal" data-target="#modal-bank" class="btn btn-outline-light mt-3 mb-3 tambah-bank">Tambah Akun Bank</button>
 
         <table class="table table-borderless text-white">
           <thead>
@@ -106,9 +104,10 @@
           </thead>
 
           <tbody>
-            <?php foreach ($bank as $b) : ?>
+            <?php $i = 1;
+            foreach ($bank as $b) : ?>
               <tr>
-                <td>1</td>
+                <td><?= $i++; ?></td>
 
                 <td>
                   <?= $b['nama_bank']; ?>
@@ -124,13 +123,13 @@
 
                 <td>
 
-                  <a href="#" class="btn btn-sm btn-outline-warning mb-2" data-toggle="tooltip" data-placement="top" title="Edit Alamat" id="edit">
+                  <button type="button" data-id="<?= $b['id_bank']; ?>" data-toggle="modal" data-target="#modal-bank" class="btn btn-sm btn-outline-warning mb-2 edit-bank">
                     <i data-feather="edit"></i>
-                  </a>
+                  </button>
 
-                  <a href="#" class="btn btn-sm btn-outline-danger mb-2" data-toggle="tooltip" data-placement="top" title="Hapus Bank" id="hapus">
+                  <button type="button" data-id="<?= $b['id_bank']; ?>" data-toggle="modal" data-target="#hapus-bank" class="btn btn-sm btn-outline-danger mb-2 hapusBank">
                     <i data-feather="trash"></i>
-                  </a>
+                  </button>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -299,7 +298,7 @@
             </div>
 
             <div class="form-group">
-              <input type="number" name="phone" id="phone" class="form-control input-profile" value="<?= $user['nomer_telp']; ?>">
+              <input type="text" name="phone" id="phone" class="form-control input-profile" value="<?= $user['nomer_telp']; ?>">
 
               <div class="icon">
                 <i data-feather="phone"></i>
@@ -307,7 +306,7 @@
             </div>
 
             <div class="form-group">
-              <input type="date" name="ttl" id="ttl" class="form-control input-profile">
+              <input type="date" name="ttl" id="ttl" class="form-control input-profile" value="<?= $user['tanggal_lahir']; ?>">
 
               <div class="icon calendar">
                 <i data-feather="calendar"></i>
@@ -329,49 +328,113 @@
   </div>
 </div>
 
-<!-- modal for address -->
-<div class="modal fade" id="modal-alamat" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">tambah alamat</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <form method="POST" action="">
-            <div class="form-group">
-              <input type="text" name="alamat" id="alamat" class="form-control input-profile" placeholder="Alamat">
-
-              <div class="icon">
-                <i data-feather="map-pin"></i>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <input type="text" name="penerima" id="penerima" class="form-control input-profile" placeholder="Penerima">
-
-              <div class="icon">
-                <i data-feather="user"></i>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <input type="text" name="nomer_penerima" id="nomer_penerima" class="form-control input-profile" placeholder="Nomer Penerima">
-
-              <div class="icon">
-                <i data-feather="phone"></i>
-              </div>
-            </div>
+<?php if ($this->session->userdata('role_id') == 1) : ?>
+  <!-- modal for address -->
+  <div class="modal fade" id="modal-alamat" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title title-info">edit profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <button type="submit" class="btn btn-primary">Tambah</button>
-        </form>
+        <div class="modal-body">
+          <div class="container">
+            <form method="POST" action="<?= base_url('profile/editKontak'); ?>" class="mt-3">
+              <div class="form-group">
+                <label for="alamat">Alamat</label>
+                <input type="text" name="alamat" id="alamat" class="form-control" value="<?= $kontak['alamat']; ?>">
+              </div>
+
+              <div class="form-group">
+                <label for="facebook">Link Facebook</label>
+                <input type="text" name="facebook" id="facebook" class="form-control" value="<?= $kontak['facebook']; ?>">
+              </div>
+
+              <div class="form-group">
+                <label for="instagram">Link Instagram</label>
+                <input type="text" name="instagram" id="instagram" class="form-control" value="<?= $kontak['instagram']; ?>">
+              </div>
+
+              <div class="form-group">
+                <label for="telepon">Nomer Telepon</label>
+                <input type="text" name="telepon" id="telepon" class="form-control" value="<?= $kontak['telepon']; ?>">
+              </div>
+
+              <div class="form-group">
+                <label for="line">Id Line</label>
+                <input type="text" name="line" id="line" class="form-control" value="<?= $kontak['line']; ?>">
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary btn-save">Save changes</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- modal for address -->
+  <div class="modal fade" id="modal-bank" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title title-bank">tambah bank</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <form method="POST" action="<?= base_url('profile/tambahbank'); ?>" class="mt-3 form-bank">
+              <div class="form-group">
+                <label for="nama_bank">Nama Bank</label>
+                <input type="text" name="nama_bank" id="nama_bank" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="norek">Nomer Rekening</label>
+                <input type="text" name="norek" id="norek" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="atas_nama">Atas Nama</label>
+                <input type="text" name="atas_nama" id="atas_nama" class="form-control">
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary btn-bank">Save changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal for delete category -->
+  <div class="modal fade" id="hapus-bank" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">hapus akun bank</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="lead">Yakin mau dihapus?</p>
+        </div>
+        <div class=" modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Tutup
+          </button>
+          <a href="#" class="btn btn-danger" id="dl-bank">Hapus</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php endif; ?>

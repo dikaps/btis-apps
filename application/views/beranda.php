@@ -7,13 +7,13 @@
           <p>Cocok buat kamu yang suka <?= $hero[0]['label_produk']; ?></p>
           <p>Rp. <?= rupiah($hero[0]['harga']); ?> ,-</p>
 
-          <?php if (!$this->session->userdata('role_id') == 1) : ?>
+          <?php if ($this->session->userdata('role_id') == 2) : ?>
             <div class="row">
               <div class="container">
                 <a href="detail-produk.html" class="btn btn-outline-light mr-1">
                   <i data-feather="shopping-cart" stroke-width="1"></i>
                 </a>
-                <a href="#" class="btn btn-outline-light">
+                <a href="<?= base_url('favorit/add/') . $hero['0']['id_produk']; ?>" class="btn btn-outline-light">
                   <i data-feather="heart" stroke-width="1"></i>
                 </a>
               </div>
@@ -42,16 +42,18 @@
           <div class="card shadow w-80">
             <div class="card-body">
               <div class="d-flex">
-                <a href="<?= base_url('produk/dProduk'); ?>" class="text-center">
+                <a href="<?= base_url('produk/dProduk/') . $u['id_produk']; ?>" class="text-center">
                   <img src="<?= base_url('assets/img/produk/') . $u['foto_produk']; ?>" alt="" class="img-fluid mb-4 shadow">
                 </a>
               </div>
               <div class="text-center">
                 <h3><?= $u['nama_produk']; ?></h3>
-                <p>Rp. <?= rupiah($u['harga']); ?> ,-</p>
+                <p>
+                  Rp. <?= rupiah($u['harga']); ?> ,-
+                </p>
               </div>
 
-              <?php if (!$this->session->userdata('role_id') == 1) : ?>
+              <?php if ($this->session->userdata('role_id') == 2) : ?>
                 <div class="d-flex justify-content-center bg-info">
                   <div class="btn btn-cart btn-dark shadow">
                     <a href="#" class="text-white">
@@ -77,13 +79,13 @@
           <p>Cocok buat kamu yang suka <?= $hero[1]['label_produk']; ?></p>
           <p>Rp. <?= rupiah($hero[1]['harga']); ?> ,-</p>
 
-          <?php if (!$this->session->userdata('role_id') == 1) : ?>
+          <?php if ($this->session->userdata('role_id') == 2) : ?>
             <div class="row">
               <div class="container">
-                <a href="detail-produk.html" class="btn btn-outline-light mr-1">
+                <a href="" class="btn btn-outline-light mr-1">
                   <i data-feather="shopping-cart" stroke-width="1"></i>
                 </a>
-                <a href="#" class="btn btn-outline-light">
+                <a href="<?= base_url('favorit/add/') . $hero['1']['id_produk']; ?>" class="btn btn-outline-light">
                   <i data-feather="heart" stroke-width="1"></i>
                 </a>
               </div>
@@ -93,7 +95,7 @@
       </div>
 
       <div class="col-md-6">
-        <a href="#" class="d-flex justify-content-center m-4">
+        <a href="" class="d-flex justify-content-center m-4">
           <img src="<?= base_url('assets/img/produk/') . $hero[1]['foto_produk']; ?>" alt="<?= $hero[1]['foto_produk'] ?>" class="img-fluid shadow hero-img">
         </a>
       </div>
@@ -127,7 +129,7 @@
                 <p>Rp. <?= rupiah(hargaDiskon($d['harga'], $d['besar_diskon'])); ?> ,-</p>
               </div>
 
-              <?php if (!$this->session->userdata('role_id') == 1) : ?>
+              <?php if ($this->session->userdata('role_id') == 2) : ?>
                 <div class="d-flex justify-content-center shadow">
                   <div class="btn btn-cart btn-dark">
                     <a href="detail-produk-diskon.html" class="text-white">

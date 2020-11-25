@@ -25,6 +25,8 @@ class User_model extends CI_Model
 
   private function _upload($old_image)
   {
+    // var_dump($_FILES['foto']);
+    // die;
     $image = $_FILES['foto']['name'];
     if (!$image) {
       return $old_image;
@@ -38,22 +40,33 @@ class User_model extends CI_Model
       redirect('profile');
     }
 
+    if ($image) {
+      $config['upload_path']          = './assets/img/profile';
+      $config['allowed_types']        = 'jpeg|jpg|png';
+      $config['max_size']             = 3000;
+      $config['file_name']            = 'user' . time();
 
-    $config['upload_path']          = './assets/img/profile';
-    $config['allowed_types']        = 'jpeg|jpg|png';
-    $config['max_size']             = 2048;
-
-    $this->load->library('upload', $config);
-
-    if ($this->upload->do_upload('foto')) {
-      // $old_image = $old_image;
-      if ($old_image != 'default.png') {
-        unlink(FCPATH . 'assets/img/profile/' . $old_image);
+      if ($_FILES['foto']['size'] > $config['max_size']) {
+        $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-pesan">File yang di upload terlalu besar!</div>');
+        redirect('profile');
+        // return $old_image;
       }
 
-      return $this->upload->data('file_name');
-    } else {
-      $this->upload->display_errors();
+      $this->load->library('upload', $config);
+
+      if ($this->upload->do_upload('foto')) {
+        // $old_image = $old_image;
+        if ($old_image != 'default.png') {
+          unlink(FCPATH . 'assets/img/profile/' . $old_image);
+        }
+
+        return $this->upload->data('file_name');
+      } else {
+        $this->upload->display_errors();
+      }
     }
   }
+
+  // kontak 
+
 }

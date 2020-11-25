@@ -56,6 +56,14 @@ class Produk_model extends CI_Model
     return $this->db->query($query)->result_array();
   }
 
+  public function cekProdukDiskon()
+  {
+    $this->db->select('*');
+    $this->db->from('produk');
+    $this->db->join('diskon', 'diskon.id_produk = produk.id_produk');
+    return $query = $this->db->get()->result_array();
+  }
+
   public function rulesProduk()
   {
     $config = [
@@ -153,6 +161,7 @@ class Produk_model extends CI_Model
       'harga' => $this->input->post('harga', true),
       'foto_produk' => $this->_editUpload($old_image)
     ];
+
     $this->db->where('id_produk', $where);
     $this->db->update('produk', $data);
     $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-pesan">Produk berhasil di ubah!</div>');
@@ -193,6 +202,11 @@ class Produk_model extends CI_Model
   }
 
   // kategori
+  public function getKategori()
+  {
+    return $this->db->get('kategori')->result_array();
+  }
+
   public function getJumlahKategori()
   {
     $query = $this->db->query('SELECT * FROM kategori');

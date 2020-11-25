@@ -6,9 +6,8 @@ class Beranda extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    if (!$this->session->userdata('email')) {
-      redirect('auth');
-    }
+
+    cek_login();
   }
   public function index()
   {
@@ -18,6 +17,7 @@ class Beranda extends CI_Controller
 
     $data['hero'] = $this->Produk_model->getMaxJual(2);
     $data['unggulan'] = $this->Produk_model->getMaxJual(6);
+    $data['cek_diskon'] = $this->Produk_model->cekProdukDiskon();
     $data['diskon'] = $this->Produk_model->getDiskonJoin();
 
     $this->load->view('templates/header', $data);

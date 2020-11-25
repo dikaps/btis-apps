@@ -72,10 +72,10 @@
             </a>
             <?php if ($this->session->userdata('role_id') == 2) : ?>
               <hr>
-              <a class="dropdown-item" href="">
+              <a class="dropdown-item" href="<?= base_url('favorit'); ?>">
                 Favorit Saya
               </a>
-              <a class="dropdown-item" href="">
+              <a class="dropdown-item" href="<?= base_url('keranjang'); ?>">
                 Keranjang Saya
               </a>
             <?php endif; ?>

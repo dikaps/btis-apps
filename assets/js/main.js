@@ -220,4 +220,81 @@ $(document).ready(function () {
 
     $('#hapus-diskon').attr('href', href);
   });
+
+  // kontak 
+  $('.info-kontak').click(function (e) {
+    e.preventDefault();
+    console.log('cliked');
+
+    $('#alamat').attr('readonly', 'readonly');
+    $('#facebook').attr('readonly', 'readonly');
+    $('#instagram').attr('readonly', 'readonly');
+    $('#telepon').attr('readonly', 'readonly');
+    $('#line').attr('readonly', 'readonly');
+
+    $('.btn-save').addClass('d-none');
+    $('.title-info').html('Detail Kontak');
+  });
+
+  $('.edit-kontak').click(function (e) {
+    e.preventDefault();
+    console.log('cliked');
+
+    $('#alamat').removeAttr('readonly');
+    $('#facebook').removeAttr('readonly');
+    $('#instagram').removeAttr('readonly');
+    $('#telepon').removeAttr('readonly');
+    $('#line').removeAttr('readonly');
+
+    $('.btn-save').removeClass('d-none');
+    $('.title-info').html('Edit Kontak');
+  });
+
+  // ajax bank
+  $('.tambah-bank').click(function (e) {
+    e.preventDefault();
+    $('.title-bank').html('Tambah Bank');
+    $('.btn-bank').html('Save changes');
+    $('.form-bank').attr('action', 'http://localhost/btis-apps/profile/tambahbank');
+
+    $('#nama_bank').val('');
+    $('#norek').val('');
+    $('#atas_nama').val('');
+  });
+
+  $('.edit-bank').on('click', function (e) {
+    e.preventDefault();
+
+    $('.title-bank').html('Edit Akun Bank');
+    $('.btn-bank').html('Edit');
+    // $('.btn-toggle').html('Edit');
+    const id = $(this).data('id');
+    console.log(id);
+
+    $('.form-bank').attr('action', 'http://localhost/btis-apps/profile/editbank/' + id);
+
+    $.ajax({
+      type: "post",
+      url: "http://localhost/btis-apps/profile/getBank",
+      data: {
+        id: id
+      },
+      dataType: "json",
+      success: function (response) {
+        $('#nama_bank').val(response.nama_bank);
+        $('#norek').val(response.norek);
+        $('#atas_nama').val(response.atas_nama);
+      }
+    });
+  });
+
+  $('.hapusBank').click(function (e) {
+    e.preventDefault();
+    const id = $(this).data('id');
+    console.log(id);
+
+    const href = 'http://localhost/btis-apps/profile/hapusBank/' + id;
+
+    $('#dl-bank').attr('href', href);
+  });
 });

@@ -6,10 +6,12 @@ class Produk extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+    cek_login();
   }
 
   public function index()
   {
+    cek_admin();
     $data['judul'] = "BTis | Daftar Produk";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
@@ -23,8 +25,24 @@ class Produk extends CI_Controller
     $this->load->view('templates/footer', $data);
   }
 
+  public function dProduk($id)
+  {
+    $data['judul'] = "BTis | Daftar Produk";
+    $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
+    $data['kontak'] = $this->db->get('kontak')->row_array();
+
+    // all about data produk
+    $data['produk'] = $this->Produk_model->getProdukId($id);
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/navbar', $data);
+    $this->load->view('produk/d-produk');
+    $this->load->view('templates/footer', $data);
+  }
+
   public function tambahProduk()
   {
+    cek_admin();
     $data['judul'] = "BTis | Tambah Produk";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
@@ -47,12 +65,12 @@ class Produk extends CI_Controller
 
   public function editProduk($id)
   {
+    cek_admin();
     $data['judul'] = "BTis | Edit Produk";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
     $data['produk'] = $this->Produk_model->getProdukId($id);
     $data['kategori'] = $this->Produk_model->getKategori();
-    $data['baju'] = ['baju', 'kaema', 'asdad'];
 
     $this->Produk_model->rulesProduk();
 
@@ -69,6 +87,7 @@ class Produk extends CI_Controller
 
   public function hapusProduk($id)
   {
+    cek_admin();
     $data['produk'] = $this->Produk_model->getProdukId($id);
     $this->db->delete('produk', ['id_produk' => $id]);
     unlink(FCPATH . 'assets/img/produk/' . $data['produk']['foto_produk']);
@@ -79,6 +98,7 @@ class Produk extends CI_Controller
   // kategori
   public function kategori()
   {
+    cek_admin();
     $data['judul'] = "BTis | Daftar Kategori";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->Produk_model->getOneData('kontak');
@@ -109,6 +129,7 @@ class Produk extends CI_Controller
 
   public function editKategori($id)
   {
+    cek_admin();
     $data['nama_kategori'] = $this->input->post('nama_kategori', true);
 
     $this->db->where('id_kategori', $id);
@@ -119,7 +140,7 @@ class Produk extends CI_Controller
 
   public function hapusKategori($id)
   {
-
+    cek_admin();
     $this->db->delete('kategori', ['id_kategori' => $id]);
     $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-pesan">Kategori berhasil hapus!!</div>');
     redirect('produk/kategori');
@@ -128,6 +149,7 @@ class Produk extends CI_Controller
   // produk diskon
   public function produkDiskon()
   {
+    cek_admin();
     $data['judul'] = "BTis | Daftar Produk Diskon";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
@@ -159,7 +181,7 @@ class Produk extends CI_Controller
 
   public function editDiskon($id)
   {
-
+    cek_admin();
     if ($this->input->post('is_active') == null) {
       $is_active = 0;
     } else {
@@ -179,7 +201,7 @@ class Produk extends CI_Controller
 
   public function hapusDiskon($id)
   {
-
+    cek_admin();
     $this->db->delete('diskon', ['id_diskon' => $id]);
     $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-pesan">Diskon berhasil hapus!!</div>');
     redirect('produk/produkDiskon');

@@ -18,3 +18,25 @@ if (!function_exists('hargaDiskon')) {
     return $harga = $harga - $diskon;
   }
 }
+
+if (!function_exists('cek_login')) {
+  function cek_login()
+  {
+    $ci = get_instance();
+
+    if (!$ci->session->userdata('email')) {
+      redirect('auth');
+    }
+  }
+}
+
+if (!function_exists('cek_admin')) {
+  function cek_admin()
+  {
+    $ci = get_instance();
+
+    if ($ci->session->userdata('role_id') == 2) {
+      redirect('block/forbidden');
+    }
+  }
+}
