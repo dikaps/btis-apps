@@ -3,9 +3,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Produk_model extends CI_Model
 {
-  public function getProduk()
+  public function getProduk($where)
   {
-    return $this->db->get('produk')->result_array();
+    $query = "
+      SELECT * FROM produk
+        JOIN kategori ON kategori.id_kategori = produk.id_kategori
+      WHERE stok > 0 AND produk.id_kategori = $where
+    ";
+
+    $query = $this->db->query($query);
+    return $query;
   }
 
   public function getOneData($table)
@@ -50,7 +57,8 @@ class Produk_model extends CI_Model
   public function getMaxJual($limit)
   {
     $query = "SELECT * 
-                FROM produk  
+                FROM produk
+              WHERE stok > 0  
               ORDER BY terjual DESC LIMIT $limit
     ";
     return $this->db->query($query)->result_array();
@@ -61,6 +69,7 @@ class Produk_model extends CI_Model
     $this->db->select('*');
     $this->db->from('produk');
     $this->db->join('diskon', 'diskon.id_produk = produk.id_produk');
+    $this->db->where('stok', '> 0');
     return $query = $this->db->get()->result_array();
   }
 
@@ -223,10 +232,12 @@ class Produk_model extends CI_Model
   // diskon
   public function getDiskonJoin()
   {
-    $this->db->select('*');
-    $this->db->from('diskon');
-    $this->db->join('produk', 'produk.id_produk = diskon.id_produk');
-    $query = $this->db->get()->result_array();
+    $query = "
+      SELECT * FROM diskon
+      JOIN produk ON produk.id_produk = diskon.id_produk
+      WHERE produk.stok > 0
+    ";
+    $query = $this->db->query($query)->result_array();
     return $query;
   }
 

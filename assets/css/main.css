@@ -465,6 +465,7 @@ footer a:hover {
   padding: 10px;
   border-radius: 5px;
   text-align: center;
+  z-index: 9;
 }
 
 .w-80 .card-body .btn-disc span {
@@ -493,9 +494,12 @@ footer a:hover {
   font-size: .8em;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 991px) {
   .login-box {
     width: 50vmax;
+  }
+  .text-nowrap {
+    white-space: normal !important;
   }
   .people-login,
   .people-registrasi {
@@ -548,9 +552,6 @@ footer a:hover {
   }
   .flex-column .group a {
     padding-top: 1em;
-  }
-  .row {
-    overflow: auto;
   }
 }
 /*# sourceMappingURL=main.css.map */

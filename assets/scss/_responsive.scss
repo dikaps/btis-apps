@@ -1,6 +1,10 @@
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 991px) {
   .login-box {
     width: 50vmax;
+  }
+
+  .text-nowrap {
+    white-space: normal !important;
   }
 
   .people-login,
@@ -75,9 +79,5 @@
         padding-top: 1em;
       }
     }
-  }
-
-  .row {
-    overflow: auto;
   }
 }

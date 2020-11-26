@@ -6,6 +6,7 @@ class Favorit extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+    cek_login();
     $this->load->model('Favorit_model', 'favorit');
   }
 

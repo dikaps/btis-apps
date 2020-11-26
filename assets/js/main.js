@@ -18,17 +18,6 @@ $(document).ready(function () {
 
   $("#dataTable").dataTable();
 
-
-
-  const produk = document.querySelectorAll("#produk");
-  let productName = document.getElementById("product-name");
-
-  for (let i = 0; i < produk.length; i++) {
-    let judul = produk[i].innerHTML;
-    produk[i].onclick = function () {
-      productName.innerHTML = judul;
-    };
-  }
   const deskripsi = new FroalaEditor('#deskripsi');
 
   $("#btn-nav").click(function (e) {
@@ -296,5 +285,116 @@ $(document).ready(function () {
     const href = 'http://localhost/btis-apps/profile/hapusBank/' + id;
 
     $('#dl-bank').attr('href', href);
+  });
+
+  // konfimasi alamat
+  $('#konfirmasi-alamat').on('change', function () {
+
+    const id = $('#konfirmasi-alamat option:selected').val();
+    console.log(id);
+    $.ajax({
+      type: "post",
+      url: "http://localhost/btis-apps/keranjang/getAlamat",
+      data: {
+        id: id
+      },
+      dataType: "json",
+      success: function (response) {
+        // console.log(response);
+        $('#penerima').html(response.penerima);
+        $('#alamat-penerima').html(response.alamat);
+        $('#telepon-penerima').html(response.telepon_penerima);
+      }
+    });
+  });
+
+  // ajax alamat
+  $('.tambah-alamat').click(function (e) {
+    e.preventDefault();
+    $('.title-alamat').html('tambah alamat');
+    $('.btn-tambahAlamat').html('Tambah');
+    $('.form-alamat').attr('action', 'http://localhost/btis-apps/profile/addAlamat');
+
+    $('#alamat-penerima').val('');
+    $('#penerima').val('');
+    $('#nomer_penerima').val('');
+  });
+
+  $('.edit-alamat').on('click', function (e) {
+    e.preventDefault();
+    $('.title-alamat').html('edit alamat');
+    $('.btn-tambahAlamat').html('Edit');
+
+    const id = $(this).data('id');
+    console.log(id);
+
+    $('.form-alamat').attr('action', 'http://localhost/btis-apps/profile/editalamat/' + id);
+
+    $.ajax({
+      type: "post",
+      url: "http://localhost/btis-apps/profile/getAlamat",
+      data: {
+        id: id
+      },
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+        $('#alamat-penerima').val(response.alamat);
+        $('#penerima').val(response.penerima);
+        $('#nomer_penerima').val(response.telepon_penerima);
+      }
+    });
+  });
+
+  $('.delete-alamat').click(function (e) {
+    e.preventDefault();
+    const id = $(this).data('id');
+
+    const href = 'http://localhost/btis-apps/profile/hapusAlamat/' + id;
+
+    $('#dl-alamat').attr('href', href);
+  });
+
+  // pesanan
+  $('.ambil-id').click(function (e) {
+    e.preventDefault();
+    const id = $(this).data('id');
+
+    const href = 'http://localhost/btis-apps/keranjang/uploadTransfer/' + id;
+
+    $('.form-upload').attr('action', href);
+  });
+
+  $('.kategori-produk').on('click', function (e) {
+    e.preventDefault();
+
+    const id = $(this).data('id');
+    const nama = $(this).data('nama');
+    $(this).addClass('text-danger');
+    $(this).css('pointer-events', 'none');
+    console.log(id);
+
+    $('#product-name').html('<strong>' + nama + '</strong> ditambahkan ke list');
+    $('#product-name').addClass('nama');
+
+    $.ajax({
+      type: "post",
+      url: "http://localhost/btis-apps/produk/getProduk",
+      data: {
+        id: id
+      },
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+
+        let card = document.getElementById('card');
+        for (let i = 0; i < response.length; i++) {
+
+          let cardRow = '<div class="col-md-4 col-6"><div class="card shadow w-80"><div class="card-body"><div class="d-flex justify-content-center"><img src="http://localhost/btis-apps/assets/img/produk/' + response[i].foto_produk + '" alt="" class="img-fluid mb-4 shadow"></div><div class="text-center"><h3>' + response[i].nama_produk + '</h3><p>Rp. ' + response[i].harga + ' </p></div><div class="d-flex justify-content-center"><a href="http://localhost/btis-apps/produk/dProduk/' + response[i].id_produk + '" class="btn btn-cart-produk btn-dark">Lihat</a></div></div></div></div >';
+
+          card.innerHTML += cardRow;
+        }
+      }
+    });
   });
 });

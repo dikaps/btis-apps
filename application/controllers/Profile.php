@@ -7,6 +7,7 @@ class Profile extends CI_Controller
   {
     parent::__construct();
     cek_login();
+    $this->load->model('Keranjang_model', 'keranjang');
   }
 
   public function index()
@@ -16,8 +17,16 @@ class Profile extends CI_Controller
     $data['kontak'] = $this->db->get('kontak')->row_array();
 
     $data['bank'] = $this->db->get('bank')->result_array();
+    $data['alamat'] = $this->db->get_where('alamat', ['id_user' => $data['user']['id_user']])->result_array();
 
-    // $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+
+    $data['pesanan'] = $this->keranjang->getPesananBelum($data['user']['id_user']);
+    $data['riwayat'] = $this->keranjang->getPesananSelesai($data['user']['id_user']);
+    // var_dump($data['riwayat']);
+    // die;
+
+
+
     $this->form_validation->set_rules('phone', 'Nomer Telepon', 'numeric|trim');
     if ($this->form_validation->run() == false) {
       $this->load->view('templates/header', $data);
@@ -101,6 +110,66 @@ class Profile extends CI_Controller
     $this->db->where('id_bank', $id);
     $this->db->delete('bank');
     $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-pesan col">Akun Bank berhasil dihapus!</div>');
+    redirect('profile');
+  }
+
+  // alamat user
+  public function addAlamat()
+  {
+    $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
+
+    $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+    $this->form_validation->set_rules('penerima', 'Penerima', 'required|trim');
+    $this->form_validation->set_rules('telepon_penerima', 'Nomer Penerima', 'required|trim');
+    if ($this->form_validation->run() == false) {
+      $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-pesan col">Ada kesalahan dalam penginputan alamat!</div>');
+      redirect('profile');
+    } else {
+      $data = [
+        'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+        'penerima' => htmlspecialchars($this->input->post('penerima', true)),
+        'telepon_penerima' => htmlspecialchars($this->input->post('telepon_penerima', true)),
+        'id_user' => $data['user']['id_user']
+      ];
+      $this->db->insert('alamat', $data);
+      $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-pesan col">Alamat baru berhasil ditambahkan.</div>');
+      redirect('profile');
+    }
+  }
+
+  public function getAlamat()
+  {
+    $id = $this->input->post('id', true);
+    echo json_encode($this->db->get_where('alamat', ['id_alamat' => $id])->row_array());
+  }
+
+  public function editAlamat($id)
+  {
+    $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+    $this->form_validation->set_rules('penerima', 'Penerima', 'required|trim');
+    $this->form_validation->set_rules('telepon_penerima', 'Nomer Penerima', 'required|trim');
+
+    if ($this->form_validation->run() == false) {
+      $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-pesan col">Ada kesalahan dalam pengeditan alamat!</div>');
+      redirect('profile');
+    } else {
+      $data = [
+        'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+        'penerima' => htmlspecialchars($this->input->post('penerima', true)),
+        'telepon_penerima' => htmlspecialchars($this->input->post('telepon_penerima', true)),
+      ];
+      $this->db->where('id_alamat', $id);
+      $this->db->update('alamat', $data);
+
+      $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-pesan col">alamat berhasil diubah!</div>');
+      redirect('profile');
+    }
+  }
+
+  public function hapusAlamat($id)
+  {
+    $this->db->delete('alamat', ['id_alamat' => $id]);
+    $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-pesan col">alamat berhasil dihapus!</div>');
     redirect('profile');
   }
 }

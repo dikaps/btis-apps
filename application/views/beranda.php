@@ -10,8 +10,8 @@
           <?php if ($this->session->userdata('role_id') == 2) : ?>
             <div class="row">
               <div class="container">
-                <a href="detail-produk.html" class="btn btn-outline-light mr-1">
-                  <i data-feather="shopping-cart" stroke-width="1"></i>
+                <a href="<?= base_url('produk/dProduk/') . $hero[0]['id_produk']; ?>" class="btn btn-outline-light mr-1" title="Info Produk">
+                  <i data-feather="info" stroke-width="1"></i>
                 </a>
                 <a href="<?= base_url('favorit/add/') . $hero['0']['id_produk']; ?>" class="btn btn-outline-light">
                   <i data-feather="heart" stroke-width="1"></i>
@@ -55,9 +55,9 @@
 
               <?php if ($this->session->userdata('role_id') == 2) : ?>
                 <div class="d-flex justify-content-center bg-info">
-                  <div class="btn btn-cart btn-dark shadow">
-                    <a href="#" class="text-white">
-                      <i data-feather="shopping-cart" stroke-width="1"></i>
+                  <div class="btn btn-cart btn-dark shadow" title="Info Produk">
+                    <a href="<?= base_url('produk/dProduk/') . $u['id_produk']; ?>" class="text-white">
+                      <i data-feather="info" stroke-width="1"></i>
                     </a>
                   </div>
                 </div>
@@ -82,8 +82,8 @@
           <?php if ($this->session->userdata('role_id') == 2) : ?>
             <div class="row">
               <div class="container">
-                <a href="" class="btn btn-outline-light mr-1">
-                  <i data-feather="shopping-cart" stroke-width="1"></i>
+                <a href="<?= base_url('produk/dProduk/') . $hero[1]['id_produk']; ?>" class="btn btn-outline-light mr-1" title="Info Produk">
+                  <i data-feather="info" stroke-width="1"></i>
                 </a>
                 <a href="<?= base_url('favorit/add/') . $hero['1']['id_produk']; ?>" class="btn btn-outline-light">
                   <i data-feather="heart" stroke-width="1"></i>
@@ -132,8 +132,8 @@
               <?php if ($this->session->userdata('role_id') == 2) : ?>
                 <div class="d-flex justify-content-center shadow">
                   <div class="btn btn-cart btn-dark">
-                    <a href="detail-produk-diskon.html" class="text-white">
-                      <i data-feather="shopping-cart" stroke-width="1"></i>
+                    <a href="<?= base_url('produk/dProduk/') . $d['id_produk']; ?>" class="text-white" title="Info Produk">
+                      <i data-feather="info" stroke-width="1"></i>
                     </a>
                   </div>
                 </div>

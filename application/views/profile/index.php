@@ -156,7 +156,7 @@
 
 
       <div id="alamat-info">
-        <button type="button" data-toggle="modal" data-target="#modal-alamat" class="btn btn-outline-light mt-3 mb-3">Tambah
+        <button type="button" data-toggle="modal" data-target="#modal-alamat" class="btn btn-outline-light mt-3 mb-3 tambah-alamat">Tambah
           Alamat</button>
 
         <table class="table table-borderless text-white">
@@ -170,94 +170,124 @@
           </thead>
 
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>
-                Kp. Walahar 1 RT 009/003, Desa Bantarwaru, Kec. Gantar, Kab. Indramayu
-              </td>
-              <td>
-                Andika Permana Sidiq
-                <br>
-                +62 853 2187 4357
-              </td>
-              <td>
+            <?php $i = 1;
+            foreach ($alamat as $al) : ?>
+              <tr>
+                <td><?= $i++; ?></td>
+                <td>
+                  <?= $al['alamat']; ?>
+                </td>
+                <td>
+                  <?= $al['penerima']; ?>
+                  <br>
+                  <?= $al['telepon_penerima']; ?>
+                </td>
+                <td>
+                  <button type="button" data-id="<?= $al['id_alamat']; ?>" data-toggle="modal" data-target="#modal-alamat" class="btn btn-warning btn-sm mb-2 edit-alamat">
+                    <i data-feather="edit"></i>
+                  </button>
 
-                <a href="#" class="btn btn-sm btn-warning mb-2" data-toggle="tooltip" data-placement="top" title="Edit Alamat" id="edit">
-                  <i data-feather="edit"></i>
-                </a>
 
-                <a href="#" class="btn btn-sm btn-danger mb-2" data-toggle="tooltip" data-placement="top" title="Hapus Alamat" id="hapus">
-                  <i data-feather="trash"></i>
-                </a>
-              </td>
-            </tr>
+                  <button type="button" data-id="<?= $al['id_alamat']; ?>" data-toggle="modal" data-target="#delete-alamat" class="btn btn-danger btn-sm mb-2 delete-alamat">
+                    <i data-feather="trash"></i>
+                  </button>
+                </td>
+              </tr>
           </tbody>
+        <?php endforeach; ?>
         </table>
       </div>
 
       <div id="riwayatPesanan" class="d-none">
-        <div class="r-produk mt-5">
-          <div class="d-flex">
-            <img src="assets/img/onigiri.jpg" alt="onigiri" class="img-fluid mr-3">
+        <?php foreach ($riwayat as $r) : ?>
+          <div class="r-produk mt-5">
+            <div class="d-flex">
+              <img src="<?= base_url('assets/img/produk/') . $r['foto_produk']; ?>" class="img-fluid mr-3">
 
 
-            <div class="text-white my-auto">
-              <h2>kaos onigiri</h2>
-              <p>Rp. 110.000 ,-</p>
-              <p>1x</p>
-              <p>01 / 04 / 2020</p>
+              <div class="text-white my-auto">
+                <h2 class="text-bold"><?= $r['nama_produk']; ?></h2>
+                <p>Rp. <?= rupiah($r['total_bayar']); ?> ,-</p>
+                <p>Jumlah Beli <?= $r['jml_beli']; ?>x</p>
+                <p>
+                  <?php
+                  $tgl = $r['id_pesanan'];
+                  $tgl = explode('-', $tgl);
+                  $tgl = end($tgl);
+                  $tgl = date('d M Y', $tgl);
+                  echo $tgl;
+                  ?>
+                </p>
+              </div>
+
             </div>
-
           </div>
-        </div>
+        <?php endforeach; ?>
       </div>
 
-      <div id="pesananSaya" class="d-none">
-        <div class="r-produk mt-5">
-          <div class="d-flex">
-            <img src="assets/img/onigiri.jpg" alt="onigiri" class="img-fluid mr-3">
+      <div id="pesananSaya" class="d-none pesananSaya">
+        <?php foreach ($pesanan as $p) : ?>
+          <div class="r-produk mt-5">
+            <div class="d-flex">
+              <img src="<?= base_url('assets/img/produk/') . $p['foto_produk']; ?>" alt="onigiri" class="img-fluid mr-3">
 
 
-            <div class="text-white">
-              <h3>Alamat</h3>
-              <p>Kp. Walahar 1 RT 009/003, Desa Bantarwaru, Kec. Gantar, Kab. Indramayu</p>
+              <div class="text-white">
+                <h3>Alamat</h3>
+                <p class="text-nowrap"><?= $p['alamat']; ?></p>
 
-              <h3 class="mt-3">Penerima</h3>
+                <h3 class="mt-3">Penerima</h3>
 
-              <p>Andika Permana Sidiq</p>
+                <p><?= $p['penerima']; ?></p>
 
-              <h3 class="mt-3">No. Telepon</h3>
-              <p>+62 853 2187 4357</p>
+                <h3 class="mt-3">No. Telepon</h3>
+                <p><?= $p['telepon_penerima']; ?></p>
 
-              <table class="table table-borderless ml-n2 text-white">
-                <thead>
-                  <tr>
-                    <th>
-                      <h3>
-                        Kurir
-                      </h3>
-                    </th>
-                    <th>
-                      <h3>
-                        No Resi
-                      </h3>
-                    </th>
-                  </tr>
-                </thead>
+                <table class="table table-borderless ml-n2 text-white">
+                  <thead>
+                    <tr>
+                      <th>
+                        <h3>
+                          Kurir
+                        </h3>
+                      </th>
+                      <th>
+                        <h3>
+                          No Resi
+                        </h3>
+                      </th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  <tr>
-                    <td>J&T Express</td>
-                    <td>JP9397746562</td>
-                  </tr>
-                </tbody>
-              </table>
+                  <tbody>
+                    <tr>
+                      <td class="text-nowrap"><?= $p['kurir']; ?></td>
+                      <td class="text-nowrap">
+                        <?php if (empty($p['resi_pengiriman'])) : ?>
+                          Belum diupload
+                        <?php else : ?>
+                          <?= $p['resi_pengiriman']; ?>
+                        <?php endif; ?>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <?php if ($p['status_pembayaran'] == 1) : ?>
+                  <form action="<?= base_url('keranjang/updateStatusPengiriman/'); ?>" method="POST">
+                    <input type="hidden" name="id_pesanan" value="<?= $p['id_pesanan']; ?>">
+                    <input type="hidden" name="id_produk" value="<?= $p['id_produk']; ?>">
+                    <input type="hidden" name="id_keranjang" value="<?= $p['id_keranjang']; ?>">
+                    <button class="btn btn-outline-light mt-2">Diterima</button>
+                  </form>
+                <?php else : ?>
+                  <button class="btn btn-outline-light text-uppercase mr-3 ambil-id" data-id="<?= $p['id_pesanan']; ?>" data-toggle="modal" data-target="#bayar">upload
+                    bukti transfer</button>
+                <?php endif; ?>
+              </div>
 
-              <button class="btn btn-outline-light mt-2">Diterima</button>
             </div>
-
           </div>
-        </div>
+        <?php endforeach; ?>
       </div>
 
     </div>
@@ -415,7 +445,7 @@
     </div>
   </div>
 
-  <!-- modal for delete category -->
+  <!-- modal for delete account bank -->
   <div class="modal fade" id="hapus-bank" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -433,6 +463,104 @@
             Tutup
           </button>
           <a href="#" class="btn btn-danger" id="dl-bank">Hapus</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php else : ?>
+  <!-- modal for address -->
+  <div class="modal fade" id="modal-alamat" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title title-alamat">tambah alamat</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <form method="POST" action="<?= base_url('profile/addAlamat') ?>" class="form-alamat" autocomplete="off">
+              <div class="form-group">
+                <input type="text" id="alamat-penerima" name="alamat" class="form-control input-profile" placeholder="Alamat">
+
+                <div class="icon">
+                  <i data-feather="map-pin"></i>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="text" name="penerima" id="penerima" class="form-control input-profile" placeholder="Penerima">
+
+                <div class="icon">
+                  <i data-feather="user"></i>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="text" name="telepon_penerima" id="nomer_penerima" class="form-control input-profile" placeholder="Nomer Penerima">
+
+                <div class="icon">
+                  <i data-feather="phone"></i>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary btn-tambahAlamat">Tambah</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal for delete account bank -->
+  <div class="modal fade" id="delete-alamat" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">hapus alamat anda?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="lead">Yakin mau dihapus?</p>
+        </div>
+        <div class=" modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Tutup
+          </button>
+          <a href="#" class="btn btn-danger" id="dl-alamat">Hapus</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal for upload transfer -->
+  <div class="modal fade" id="bayar" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Upload Bukti transfer</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <form action="<?= base_url('keranjang/uploadTransfer/'); ?>" method="POST" enctype="multipart/form-data" class="form-upload">
+
+
+              <div class="form-group text-center">
+                <input type="file" name="bukti-tf" id="bukti-tf" class="form-control-file">
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Simpan</button>
+          </form>
         </div>
       </div>
     </div>

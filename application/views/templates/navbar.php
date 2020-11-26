@@ -54,7 +54,7 @@
             </li>
           </ul>
         <?php else : ?>
-          <a href="produk.html" class="nav-item nav-link text-white">Daftar Produk</a>
+          <a href="<?= base_url('produk/daftarproduk') ?>" class="nav-item nav-link text-white">Daftar Produk</a>
         <?php endif; ?>
       </div>
     </div>

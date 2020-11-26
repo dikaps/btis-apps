@@ -31,13 +31,47 @@ class Produk extends CI_Controller
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
 
+    $data['diskon'] = $this->Produk_model->getDataId('diskon', 'id_produk', $id);
+    // var_dump($data['diskon']);
+    // die;
+
     // all about data produk
     $data['produk'] = $this->Produk_model->getProdukId($id);
+
 
     $this->load->view('templates/header', $data);
     $this->load->view('templates/navbar', $data);
     $this->load->view('produk/d-produk');
     $this->load->view('templates/footer', $data);
+  }
+
+  public function daftarProduk()
+  {
+
+    $data['judul'] = "BTis | Daftar Produk";
+    $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
+    $data['kontak'] = $this->db->get('kontak')->row_array();
+
+    if (empty($id)) {
+      $id = 5;
+    } else {
+      $id = $this->input->post('id', true);
+    }
+    $data['produk'] = $this->Produk_model->getProduk($id)->result_array();
+    $data['kategori'] = $this->db->get('kategori')->result_array();
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/navbar', $data);
+    $this->load->view('produk/daftar-produk');
+    $this->load->view('templates/footer', $data);
+  }
+
+  public function getProduk()
+  {
+
+    $id = $this->input->post('id', true);
+    $data['produk'] = $this->Produk_model->getProduk($id)->result_array();
+    echo json_encode($data['produk']);
   }
 
   public function tambahProduk()
