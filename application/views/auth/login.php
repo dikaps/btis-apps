@@ -33,7 +33,7 @@
 
             <div class="mt-4 text-center">
               <p>Belum Punya Akun? <a href="<?= base_url('auth/registrasi') ?>" class="text-blue">Daftar Yuk.</a></p>
-              <a href="#" class="text-blue">Lupa Password?</a>
+              <a href="<?= base_url('auth/lupaPassword'); ?>" class="text-blue">Lupa Password?</a>
             </div>
           </div>
         </div>
