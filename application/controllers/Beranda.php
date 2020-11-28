@@ -19,10 +19,11 @@ class Beranda extends CI_Controller
     $data['unggulan'] = $this->Produk_model->getMaxJual(6);
     $data['cek_diskon'] = $this->Produk_model->cekProdukDiskon();
     $data['diskon'] = $this->Produk_model->getDiskonJoin();
+    $data['jml_pesanan'] = count($this->db->get_where('pesanan', ['status_pengiriman' => 0])->result_array());
 
     $this->load->view('templates/header', $data);
     $this->load->view('templates/navbar', $data);
-    $this->load->view('beranda');
-    $this->load->view('templates/footer');
+    $this->load->view('beranda', $data);
+    $this->load->view('templates/footer', $data);
   }
 }

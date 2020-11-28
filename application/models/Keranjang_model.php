@@ -7,7 +7,7 @@ class Keranjang_model extends CI_Model
   {
     $this->db->select('produk.nama_produk, produk.foto_produk, produk.harga, keranjang.*');
     $this->db->from('keranjang');
-    $this->db->where('status', '0', 'id_user', $idUser);
+    $this->db->where('id_user', $idUser);
     $this->db->join('produk', 'produk.id_produk = keranjang.id_produk');
     return $this->db->get()->result_array();
   }

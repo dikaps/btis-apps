@@ -397,4 +397,47 @@ $(document).ready(function () {
       }
     });
   });
+
+  $('.button-resi').click(function (e) {
+    e.preventDefault();
+    const id = $(this).data('id');
+
+    $('#id-pesanan').val(id);
+
+    $.ajax({
+      type: "post",
+      url: "http://localhost/btis-apps/pesanan/getResi",
+      data: {
+        id: id
+      },
+      dataType: "json",
+      success: function (response) {
+        $('#resi').val(response.resi_pengiriman);
+      }
+    });
+  });
+
+  $('.edit-resi').click(function (e) {
+    e.preventDefault();
+
+    $('.form-resi').attr('action', 'http://localhost/btis-apps/pesanan/updateResi');
+
+    const idPesanan = $('#id-pesanan').val();
+    const resi = $('#resi').val();
+
+    $.ajax({
+      type: "post",
+      url: "http://localhost/btis-apps/pesanan/updateResi",
+      data: {
+        idPesanan: idPesanan,
+        resiPengiriman: resi
+      },
+      dataType: "json",
+      success: function (response) {
+        $('#pesan').removeClass('d-none');
+        $('#pesan').delay(3000).slideUp();
+        $('#pesan').html('Resi berhasil di tambahkan');
+      }
+    });
+  });
 });

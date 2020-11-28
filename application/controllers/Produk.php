@@ -15,6 +15,7 @@ class Produk extends CI_Controller
     $data['judul'] = "BTis | Daftar Produk";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
+    $data['jml_pesanan'] = count($this->db->get_where('pesanan', ['status_pengiriman' => 0])->result_array());
 
     // all about data produk
     $data['produk'] = $this->Produk_model->getProdukJoin()->result_array();
@@ -30,10 +31,9 @@ class Produk extends CI_Controller
     $data['judul'] = "BTis | Daftar Produk";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
+    $data['jml_pesanan'] = count($this->db->get_where('pesanan', ['status_pengiriman' => 0])->result_array());
 
     $data['diskon'] = $this->Produk_model->getDataId('diskon', 'id_produk', $id);
-    // var_dump($data['diskon']);
-    // die;
 
     // all about data produk
     $data['produk'] = $this->Produk_model->getProdukId($id);
@@ -51,6 +51,7 @@ class Produk extends CI_Controller
     $data['judul'] = "BTis | Daftar Produk";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
+    $data['jml_pesanan'] = count($this->db->get_where('pesanan', ['status_pengiriman' => 0])->result_array());
 
     if (empty($id)) {
       $id = 5;
@@ -80,6 +81,7 @@ class Produk extends CI_Controller
     $data['judul'] = "BTis | Tambah Produk";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
+    $data['jml_pesanan'] = count($this->db->get_where('pesanan', ['status_pengiriman' => 0])->result_array());
 
     $data['produk'] = $this->Produk_model->getProduk();
     $data['kategori'] = $this->Produk_model->getKategori();
@@ -105,6 +107,7 @@ class Produk extends CI_Controller
     $data['kontak'] = $this->db->get('kontak')->row_array();
     $data['produk'] = $this->Produk_model->getProdukId($id);
     $data['kategori'] = $this->Produk_model->getKategori();
+    $data['jml_pesanan'] = count($this->db->get_where('pesanan', ['status_pengiriman' => 0])->result_array());
 
     $this->Produk_model->rulesProduk();
 
@@ -136,6 +139,7 @@ class Produk extends CI_Controller
     $data['judul'] = "BTis | Daftar Kategori";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->Produk_model->getOneData('kontak');
+    $data['jml_pesanan'] = count($this->db->get_where('pesanan', ['status_pengiriman' => 0])->result_array());
 
     $data['kategori'] = $this->Produk_model->getData('kategori');
 
@@ -187,6 +191,7 @@ class Produk extends CI_Controller
     $data['judul'] = "BTis | Daftar Produk Diskon";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
+    $data['jml_pesanan'] = count($this->db->get_where('pesanan', ['status_pengiriman' => 0])->result_array());
 
     // all about data produk
     $data['produk'] = $this->Produk_model->getProduk();

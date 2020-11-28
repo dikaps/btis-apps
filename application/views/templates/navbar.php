@@ -41,13 +41,17 @@
               </a>
 
               <div class="dropdown-menu" aria-labelledby="produk-dropdown">
-                <a class="dropdown-item" href="p-baru.html">
-                  Baru <span class="badge badge-warning">3</span>
+                <a class="dropdown-item" href="<?= base_url('pesanan'); ?>">
+                  Baru
+                  <?php if ($jml_pesanan == 0) : ?>
+                  <?php else : ?>
+                    <span class="badge badge-warning"><?= $jml_pesanan; ?></span>
+                  <?php endif; ?>
                 </a>
-                <a class="dropdown-item" href="p-dikirim.html">
+                <a class="dropdown-item" href="<?= base_url('pesanan/dikirim'); ?>">
                   Dikirim
                 </a>
-                <a class="dropdown-item" href="p-selesai.html">
+                <a class="dropdown-item" href="<?= base_url('pesanan/selesai'); ?>">
                   Selesai
                 </a>
               </div>

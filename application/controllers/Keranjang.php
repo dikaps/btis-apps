@@ -19,8 +19,6 @@ class Keranjang extends CI_Controller
 
 
     $data['keranjang'] = $this->keranjang->getKeranjangJoin($data['user']['id_user']);
-    // var_dump($data['keranjang']);
-    // die;
 
     $this->load->view('templates/header', $data);
     $this->load->view('templates/navbar', $data);
@@ -73,21 +71,21 @@ class Keranjang extends CI_Controller
 
       $data = [
         'id_pesanan' => 'ps-' . $data['user']['id_user'] . '-' . time(),
-        'id_keranjang' => $this->input->post('id_keranjang', true),
+        'id_produk' => $this->input->post('id_produk', true),
         'id_alamat' => $this->input->post('alamat', true),
         'id_bank' => $this->input->post('bank', true),
         'id_user' => $data['user']['id_user'],
+        'ukuran_produk' => $this->input->post('ukuran_produk', true),
+        'jml_beli' => $this->input->post('jml_beli', true),
         'total_bayar' => $this->input->post('total_bayar', true)
       ];
 
       $this->db->insert('pesanan', $data);
-      $this->db->set('status', '1');
-      $this->db->where('id_keranjang', $data['id_keranjang']);
-      $this->db->update('keranjang');
       $produk = $this->db->get_where('produk', ['id_produk' => $this->input->post('id_produk', true)])->row_array();
       $keranjang = $this->db->get_where('keranjang', ['id_keranjang' => $this->input->post('id_keranjang', true)])->row_array();
       $stok = $produk['stok'];
       $stok -= $keranjang['jml_beli'];
+      $this->db->delete('keranjang', ['id_keranjang' => $this->input->post('id_keranjang', true)]);
 
       $this->db->set('stok', $stok);
       $this->db->where('id_produk', $produk['id_produk']);
@@ -101,6 +99,8 @@ class Keranjang extends CI_Controller
     $data['judul'] = "BTis | Bayar";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
+
+
     $data['pesanan'] = $this->db->get_where('pesanan', ['id_pesanan' => $id])->row_array();
     $data['bank'] = $this->db->get_where('bank', ['id_bank' => $data['pesanan']['id_bank']])->row_array();
 
@@ -112,8 +112,6 @@ class Keranjang extends CI_Controller
 
   public function uploadTransfer($id)
   {
-    // var_dump($_FILES);
-    // die;
     $upload = $_FILES['bukti-tf']['name'];
     if ($upload) {
       $config['upload_path']          = './assets/img/transfer';
@@ -141,6 +139,7 @@ class Keranjang extends CI_Controller
   {
     $id = $this->input->post('id_pesanan', true);
     $idProduk = $this->input->post('id_produk', true);
+
     // pesanan
     $this->db->set('status_pemesanan', 1);
     $this->db->set('status_pengiriman', 1);

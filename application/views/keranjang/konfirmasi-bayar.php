@@ -22,6 +22,8 @@
 
           <form method="POST" action="">
             <input type="hidden" name="id_keranjang" value="<?= $produk['id_keranjang'] ?>">
+            <input type="hidden" name="ukuran_produk" value="<?= $produk['ukuran']; ?>">
+            <input type="hidden" name="jml_beli" value="<?= $produk['jml_beli']; ?>">
             <input type="hidden" name="id_produk" value="<?= $produk['id_produk'] ?>">
             <div class="form-group">
               <select class="custom-select" id="konfirmasi-alamat" name='alamat'>

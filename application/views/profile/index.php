@@ -209,6 +209,7 @@
                 <h2 class="text-bold"><?= $r['nama_produk']; ?></h2>
                 <p>Rp. <?= rupiah($r['total_bayar']); ?> ,-</p>
                 <p>Jumlah Beli <?= $r['jml_beli']; ?>x</p>
+                <p>Ukuran Produk <?= $r['ukuran_produk']; ?></p>
                 <p>
                   <?php
                   $tgl = $r['id_pesanan'];
@@ -248,6 +249,32 @@
                     <tr>
                       <th>
                         <h3>
+                          Total Bayar
+                        </h3>
+                      </th>
+                      <th>
+                        <h3>
+                          Ukuran Yang dipesan
+                        </h3>
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td class="text-nowrap">Rp. <?= rupiah($p['total_bayar']); ?>,-</td>
+                      <td class="text-nowrap">
+                        <?= $p['ukuran_produk']; ?>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table class="table table-borderless ml-n2 text-white">
+                  <thead>
+                    <tr>
+                      <th>
+                        <h3>
                           Kurir
                         </h3>
                       </th>
@@ -264,7 +291,7 @@
                       <td class="text-nowrap"><?= $p['kurir']; ?></td>
                       <td class="text-nowrap">
                         <?php if (empty($p['resi_pengiriman'])) : ?>
-                          Belum diupload
+                          Belum ada
                         <?php else : ?>
                           <?= $p['resi_pengiriman']; ?>
                         <?php endif; ?>
@@ -276,7 +303,6 @@
                   <form action="<?= base_url('keranjang/updateStatusPengiriman/'); ?>" method="POST">
                     <input type="hidden" name="id_pesanan" value="<?= $p['id_pesanan']; ?>">
                     <input type="hidden" name="id_produk" value="<?= $p['id_produk']; ?>">
-                    <input type="hidden" name="id_keranjang" value="<?= $p['id_keranjang']; ?>">
                     <button class="btn btn-outline-light mt-2">Diterima</button>
                   </form>
                 <?php else : ?>

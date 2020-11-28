@@ -15,15 +15,15 @@ class Profile extends CI_Controller
     $data['judul'] = "BTis | Profile";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
+    $data['jml_pesanan'] = count($this->db->get_where('pesanan', ['status_pengiriman' => 0])->result_array());
 
     $data['bank'] = $this->db->get('bank')->result_array();
     $data['alamat'] = $this->db->get_where('alamat', ['id_user' => $data['user']['id_user']])->result_array();
 
 
-    $data['pesanan'] = $this->keranjang->getPesananBelum($data['user']['id_user']);
-    $data['riwayat'] = $this->keranjang->getPesananSelesai($data['user']['id_user']);
-    // var_dump($data['riwayat']);
-    // die;
+    $data['pesanan'] = $this->Pesanan_model->getPesananWhere(0, $data['user']['id_user']);
+    $data['riwayat'] = $this->Pesanan_model->getPesananWhere(1, $data['user']['id_user']);
+
 
 
 

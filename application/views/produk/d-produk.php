@@ -61,16 +61,18 @@
           <h5>Terjual</h5>
           <p><?= $produk['terjual']; ?></p>
 
-          <div class="row">
-            <div class="container">
-              <button type="submit" class="btn btn-outline-light mr-1">
-                <i data-feather="shopping-cart"></i>
-              </button>
-              <a href="<?= base_url('favorit/add/') . $produk['id_produk']; ?>" class="btn btn-outline-light">
-                <i data-feather="heart"></i>
-              </a>
+          <?php if ($this->session->userdata('role_id') == 2) : ?>
+            <div class="row">
+              <div class="container">
+                <button type="submit" class="btn btn-outline-light mr-1">
+                  <i data-feather="shopping-cart"></i>
+                </button>
+                <a href="<?= base_url('favorit/add/') . $produk['id_produk']; ?>" class="btn btn-outline-light">
+                  <i data-feather="heart"></i>
+                </a>
+              </div>
             </div>
-          </div>
+          <?php endif; ?>
         </form>
       </div>
     </div>
