@@ -84,7 +84,7 @@
         </div>
 
         <div class="col-md-6">
-          <a href="detail-produk.html" class="d-flex justify-content-center m-4">
+          <a href="<?= base_url('auth') ?>" class="d-flex justify-content-center m-4">
             <img src="<?= base_url('assets/img/produk/') . $hero[0]['foto_produk']; ?>" alt="<?= $hero[0]['foto_produk'] ?>" class="img-fluid shadow hero-img">
           </a>
         </div>
@@ -191,7 +191,7 @@
                 <?php if (!$this->session->userdata('role_id') == 1) : ?>
                   <div class="d-flex justify-content-center shadow">
                     <div class="btn btn-cart btn-dark">
-                      <a href="detail-produk-diskon.html" class="text-white">
+                      <a href="<?= base_url('auth') ?>" class="text-white">
                         <i data-feather="info" stroke-width="1"></i>
                       </a>
                     </div>
