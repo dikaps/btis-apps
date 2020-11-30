@@ -1,253 +1,260 @@
 * {
-  font-family: "roboto";
-  transition: all 0.3s ease;
+	font-family: "roboto";
+	transition: all 0.3s ease;
+
+}
+
+::-webkit-scrollbar {
+	width: 0;
+	border: 1px solid $dark;
+	// background: transparent;
 }
 
 body {
-  background-color: $dark;
+	background-color: $dark;
 }
 
 nav {
-  z-index: 2;
+	z-index: 2;
 
-  i {
-    font-size: 0.2rem;
-  }
+	i {
+		font-size: 0.2rem;
+	}
 
-  .dropdown-item {
-    font-size: 15px;
-  }
+	.dropdown-item {
+		font-size: 15px;
+	}
 }
 
 section {
-  @include p-7x();
+	@include p-7x();
 
-  h1 {
-    font-weight: bolder;
-    margin-bottom: 79px;
-  }
+	h1 {
+		font-weight: bolder;
+		margin-bottom: 79px;
+	}
 }
 
 .bg-darkMedium {
-  background-color: $darkMedium;
-  padding: 0.6rem;
-  border-radius: 10px;
+	background-color: $darkMedium;
+	padding: 0.6rem;
+	border-radius: 10px;
 }
 
 .mb-30 {
-  margin-bottom: 20%;
+	margin-bottom: 20%;
 }
 
 .hv-100 {
-  height: 100vh;
+	height: 100vh;
 }
 
 .bg-white {
-  background-color: $white;
+	background-color: $white;
 }
 
 .btn-dark-mediun {
-  background-color: $dark;
-  color: $white;
+	background-color: $dark;
+	color: $white;
 
-  &:hover {
-    color: $white;
-  }
+	&:hover {
+		color: $white;
+	}
 }
 
 .dropdown:hover>.dropdown-menu {
-  display: block;
+	display: block;
 }
 
 .text-blue {
-  color: $blueLight;
+	color: $blueLight;
 }
 
 .text-bold {
-  font-weight: bolder;
-  font-size: 25px;
-  color: $semiWhite;
+	font-weight: bolder;
+	font-size: 25px;
+	color: $semiWhite;
 }
 
 .form-control {
-  border: 1px solid $darkBorder;
-  border-radius: 5px;
-  padding: 1.3rem;
-  color: $darkMedium;
+	border: 1px solid $darkBorder;
+	border-radius: 5px;
+	padding: 1.3rem;
+	color: $darkMedium;
 
-  &::placeholder {
-    color: $semiGray;
-  }
+	&::placeholder {
+		color: $semiGray;
+	}
 }
 
 .form-group {
-  position: relative;
+	position: relative;
 
-  label {
-    text-transform: uppercase;
-    font-weight: 400;
-    color: $darkMedium;
-  }
+	label {
+		text-transform: uppercase;
+		font-weight: 400;
+		color: $darkMedium;
+	}
 
-  p {
-    font-weight: 300;
-  }
+	p {
+		font-weight: 300;
+	}
 
-  .icon-eye {
-    position: absolute;
-    top: 0.5rem;
-    right: 1.5rem;
+	.icon-eye {
+		position: absolute;
+		top: 0.5rem;
+		right: 1.5rem;
 
-    #check {
-      position: absolute;
-      width: 1.5rem;
-      height: 2rem;
-      right: 0.02rem;
-      opacity: 0;
-    }
-  }
+		#check {
+			position: absolute;
+			width: 1.5rem;
+			height: 2rem;
+			right: 0.02rem;
+			opacity: 0;
+		}
+	}
 
 
-  .icon {
-    position: absolute;
-    top: 0.6rem;
-    left: 1rem;
-  }
+	.icon {
+		position: absolute;
+		top: 0.6rem;
+		left: 1rem;
+	}
 
-  input[type="date"] {
-    height: 0.5%;
-  }
+	input[type="date"] {
+		height: 0.5%;
+	}
 
-  .calendar {
-    top: 1.2rem;
-  }
+	.calendar {
+		top: 1.2rem;
+	}
 }
 
 .input-profile {
-  padding-left: 3.5em !important;
+	padding-left: 3.5em !important;
 
-  &::placeholder {
-    color: $darkMedium;
-  }
+	&::placeholder {
+		color: $darkMedium;
+	}
 }
 
 .r-produk {
-  width: 35%;
+	width: 35%;
 
-  .d-flex {
-    img {
-      width: 40%;
-      height: 30%;
-      border-radius: 10px;
-    }
+	.d-flex {
+		img {
+			width: 40%;
+			height: 30%;
+			border-radius: 10px;
+		}
 
-    h2 {
-      text-transform: uppercase;
-      font-size: 20px;
-      margin-bottom: 0;
-    }
+		h2 {
+			text-transform: uppercase;
+			font-size: 20px;
+			margin-bottom: 0;
+		}
 
-    h3 {
-      font-size: 20px;
-    }
+		h3 {
+			font-size: 20px;
+		}
 
-    p {
-      margin-bottom: 0;
-    }
-  }
+		p {
+			margin-bottom: 0;
+		}
+	}
 }
 
 .col-md-6 {
-  .r-produk {
-    width: 80%;
-  }
+	.r-produk {
+		width: 80%;
+	}
 }
 
 .p-produk {
-  width: 25%;
-  border-radius: 10px;
+	width: 25%;
+	border-radius: 10px;
 }
 
 .my-auto {
-  h2 {
-    font-size: 20px;
-  }
+	h2 {
+		font-size: 20px;
+	}
 }
 
 table {
-  td {
-    img {
-      border-radius: 5px;
-    }
-  }
+	td {
+		img {
+			border-radius: 5px;
+		}
+	}
 }
 
 .modal {
-  .modal-header {
-    border: none;
+	.modal-header {
+		border: none;
 
-    h5 {
-      text-transform: uppercase;
+		h5 {
+			text-transform: uppercase;
 
-      font-weight: bolder;
-    }
-  }
+			font-weight: bolder;
+		}
+	}
 
-  .modal-body {
-    img {
-      width: 40%;
-      border-radius: 100%;
-    }
-  }
+	.modal-body {
+		img {
+			width: 40%;
+			border-radius: 100%;
+		}
+	}
 
-  .modal-footer {
-    border: none;
-  }
+	.modal-footer {
+		border: none;
+	}
 }
 
 section.info-users {
-  a {
-    text-decoration: none;
+	a {
+		text-decoration: none;
 
-    &:hover {
-      color: $blueLight !important;
-    }
-  }
+		&:hover {
+			color: $blueLight !important;
+		}
+	}
 }
 
 .list-group {
-  .list-group-item {
-    background-color: $dark;
-    border-color: transparent;
-    padding: 0.5rem;
+	.list-group-item {
+		background-color: $dark;
+		border-color: transparent;
+		padding: 0.5rem;
 
-    a {
-      color: $white;
-      text-decoration: none;
-    }
-  }
+		a {
+			color: $white;
+			text-decoration: none;
+		}
+	}
 }
 
 footer {
-  position: relative;
-  @include p-7x();
-  color: $semiWhite;
+	position: relative;
+	@include p-7x();
+	color: $semiWhite;
 
-  h2 {
-    letter-spacing: 2px;
-  }
+	h2 {
+		letter-spacing: 2px;
+	}
 
-  p {
-    font-style: italic;
-    font-weight: 300;
-  }
+	p {
+		font-style: italic;
+		font-weight: 300;
+	}
 
-  a {
-    color: inherit;
+	a {
+		color: inherit;
 
-    &:hover {
-      text-decoration: none;
-      color: inherit;
-    }
-  }
+		&:hover {
+			text-decoration: none;
+			color: inherit;
+		}
+	}
 }
