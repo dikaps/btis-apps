@@ -24,8 +24,9 @@
     <div class="col-12 col-md-8">
       <p class="text-white mb-4">
         Kategori : <span id="product-name"></span>
+        <i data-feather="refresh-ccw" class="float-right" id="refresh" stroke-width="1" style="cursor: pointer;"></i>
       </p>
-      <div class="row justify-content-around" id="card">
+      <div class="row justify-content-around" style="max-height: 100vh; overflow:auto;" id="card">
 
       </div>
     </div>

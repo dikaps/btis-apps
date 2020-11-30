@@ -23,7 +23,7 @@
       </div>
 
       <div class="col-md-6">
-        <a href="detail-produk.html" class="d-flex justify-content-center m-4">
+        <a href="<?= base_url('produk/dProduk/') . $hero[0]['id_produk']; ?>" class="d-flex justify-content-center m-4">
           <img src="<?= base_url('assets/img/produk/') . $hero[0]['foto_produk']; ?>" alt="<?= $hero[0]['foto_produk'] ?>" class="img-fluid shadow hero-img">
         </a>
       </div>

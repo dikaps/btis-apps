@@ -83,7 +83,7 @@ class Produk extends CI_Controller
     $data['kontak'] = $this->db->get('kontak')->row_array();
     $data['jml_pesanan'] = count($this->db->get_where('pesanan', ['status_pengiriman' => 0])->result_array());
 
-    $data['produk'] = $this->Produk_model->getProduk();
+    // $data['produk'] = $this->Produk_model->getProduk();
     $data['kategori'] = $this->Produk_model->getKategori();
 
     $this->Produk_model->rulesProduk();
@@ -194,7 +194,6 @@ class Produk extends CI_Controller
     $data['jml_pesanan'] = count($this->db->get_where('pesanan', ['status_pengiriman' => 0])->result_array());
 
     // all about data produk
-    $data['produk'] = $this->Produk_model->getProduk();
     $data['diskon'] = $this->Produk_model->getDiskonJoin();
 
     $this->form_validation->set_rules('id_produk', 'Nama Produk', 'required|is_unique[diskon.id_produk]');

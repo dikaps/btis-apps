@@ -15,6 +15,17 @@ class Pesanan_model extends CI_Model
     return $this->db->get()->row_array();
   }
 
+  public function getPesananWhere($status, $user)
+  {
+    $this->db->select('*');
+    $this->db->from('pesanan');
+    $this->db->join('produk', 'produk.id_produk = pesanan.id_produk');
+    $this->db->join('alamat', 'alamat.id_alamat = pesanan.id_alamat');
+    $this->db->join('user', 'user.id_user = pesanan.id_user');
+    $this->db->where('pesanan.status_pemesanan', $status, 'id_user', $user);
+    return $this->db->get()->result_array();
+  }
+
   public function getStatusPesananBaru()
   {
     $this->db->select('*');

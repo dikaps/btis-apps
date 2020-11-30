@@ -1,0 +1,2 @@
+Database dengan nama db.sql database lama
+Database dengan nama new_db.sql itu database baru, cuma kalo misalnya pas import gagal ganti dengan new_db_v2.sql
