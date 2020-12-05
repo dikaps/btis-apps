@@ -160,7 +160,6 @@ class Produk_model extends CI_Model
   public function editProduk($data, $file, $old_image, $where)
   {
     $data = [
-      'id_produk' => uniqid(),
       'nama_produk' => htmlspecialchars($this->input->post('nama_produk', true)),
       'label_produk' => htmlspecialchars($this->input->post('label_produk', true)),
       'ukuran' => implode(',', $this->input->post('ukuran', true)),
