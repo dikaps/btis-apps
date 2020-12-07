@@ -28,7 +28,7 @@ class Produk extends CI_Controller
 
   public function dProduk($id)
   {
-    $data['judul'] = "BTis | Daftar Produk";
+    $data['judul'] = "BTis | Detail Produk";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
     $data['jml_pesanan'] = count($this->db->get_where('pesanan', ['status_pengiriman' => 0])->result_array());
@@ -172,7 +172,7 @@ class Produk extends CI_Controller
 
     $this->db->where('id_kategori', $id);
     $this->db->update('kategori', $data);
-    $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-pesan">Kategori baru berhasil ditambahkan!!</div>');
+    $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-pesan">Kategori berhasil diubah!!</div>');
     redirect('produk/kategori');
   }
 
@@ -195,6 +195,7 @@ class Produk extends CI_Controller
 
     // all about data produk
     $data['diskon'] = $this->Produk_model->getDiskonJoin();
+    $data['produk'] = $this->db->get('produk')->result_array();
 
     $this->form_validation->set_rules('id_produk', 'Nama Produk', 'required|is_unique[diskon.id_produk]');
     $this->form_validation->set_rules('diskon', 'Besar Diskon', 'required|trim|numeric');

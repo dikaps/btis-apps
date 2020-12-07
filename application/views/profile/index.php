@@ -336,7 +336,7 @@
             <img src="<?= base_url('assets/img/profile/') . $user['foto_profil']; ?>" alt="" class="img-fluid shadow">
 
           </div>
-          <form method="POST" action="" class="mt-3" enctype="multipart/form-data">
+          <form method="POST" action="" class="mt-3" enctype="multipart/form-data" autocomplete="on">
             <div class="form-group">
               <input type="text" name="nama" id="nama" class="form-control input-profile" value="<?= $user['username']; ?>">
 

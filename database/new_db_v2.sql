@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Nov 2020 pada 17.08
+-- Waktu pembuatan: 07 Des 2020 pada 16.00
 -- Versi server: 10.4.13-MariaDB
 -- Versi PHP: 7.4.7
 
@@ -22,13 +22,13 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`btis` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+
+USE `btis`;
 
 --
 -- Struktur dari tabel `alamat`
 --
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`btis` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-
-USE `btis`;
 
 CREATE TABLE `alamat` (
   `id_alamat` int(11) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `alamat` (
 INSERT INTO `alamat` (`id_alamat`, `alamat`, `penerima`, `telepon_penerima`, `id_user`) VALUES
 (1, 'Kp. Walahar 1 RT 009/003, Desa Bantarwaru, Kec. Gantar, Kab. Indramayu', 'Andika Permana Sidiq', '62 853 2187 4357', 'user9046'),
 (4, 'Jl. Sukajaya Kaler No. 44 RT.05/04, Kel. Cibabat Kec. Cimahi Utara', 'Satou Kazuma', '08888888888', 'user9046'),
-(8, 'ABCDEFGH', 'Andika', '12345', 'user5143');
+(12, 'Kp. Walahar 1 RT 009/003, Desa Bantarwaru, Kec. Gantar, Kab. Indramayu', 'Andika', '131231231', 'user4735');
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,8 @@ CREATE TABLE `bank` (
 
 INSERT INTO `bank` (`id_bank`, `nama_bank`, `norek`, `atas_nama`) VALUES
 (1, 'BRI', '3388 - 01 - 028216 - 53 - 5', 'Pikapikani'),
-(3, 'BNI', '0856577142', 'Pikapikani');
+(3, 'BNI', '0856577142', 'Pikapikani'),
+(6, 'BJB', '54321 555 4321', 'Pikapikani');
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,8 @@ CREATE TABLE `diskon` (
 
 INSERT INTO `diskon` (`id_diskon`, `id_produk`, `besar_diskon`, `is_active`) VALUES
 (1, '5fb4b08e41896', 20, 1),
-(2, '5fb4b06c8b76e', 15, 1);
+(2, '5fb4b06c8b76e', 15, 1),
+(4, '5fb4afd571bfb', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -188,6 +190,13 @@ CREATE TABLE `pesanan` (
   `status_pemesanan` int(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `pesanan`
+--
+
+INSERT INTO `pesanan` (`id_pesanan`, `id_produk`, `id_alamat`, `id_bank`, `id_user`, `ukuran_produk`, `jml_beli`, `total_bayar`, `kurir`, `resi_pengiriman`, `status_pengiriman`, `bukti_transfer`, `status_pembayaran`, `status_pemesanan`) VALUES
+('ps-user4735-1607318093', '5fbd2a06e0248', 12, 1, 'user4735', 'XL', 2, 220000, 'J&T Express', '88888888', 1, 'bukti20201207121529.png', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -212,14 +221,13 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `label_produk`, `ukuran`, `stok`, `id_kategori`, `deskripsi_produk`, `harga`, `foto_produk`, `terjual`) VALUES
-('5fb4afd571bfb', 'Hoodie Black Clover', 'Black Clover', 'L,XL', '2', 13, '<p>Hoodie ini bisa dipakai oleh pria ataupun wanita (unisex). Hoodie ini terbuat dari bahan Cotton Combed 30s yang menyerap keringat, lembut, dingin dan nyaman saat dipakai. Dan menggunakan sablon Plastisol yang pastinya tidak mudah luntur dan sangat awet</p><p><br></p><p>Size Kaos :</p><p>L : 69cm x 51cm</p><p>XL : 71cm x 52cm</p>', 240000, 'hoodie.jpg', 0),
-('5fb4b00573cd1', 'Kaos Anime', 'Anime', 'M,L,XL', '3', 5, '<p>Kaos ini bisa dipakai oleh pria ataupun wanita (unisex). Kaos ini terbuat dari bahan Cotton Combed 30s yang menyerap keringat, lembut, dingin dan nyaman saat dipakai. Dan menggunakan sablon Plastisol yang pastinya tidak mudah luntur dan sangat awet</p><p><br></p><p>Size Kaos :</p><p>M : 66cm x 49cm</p><p>L : 69cm x 51cm</p><p>XL : 71cm x 52cm</p><p>XXL : 74cm x 54cm</p>', 98000, 'anime.jpg', 0),
+('5fb4afd571bfb', 'Hoodie Black Clover', 'Black Clover', 'L,XL', '1', 13, '<p>Hoodie ini bisa dipakai oleh pria ataupun wanita (unisex). Hoodie ini terbuat dari bahan Cotton Combed 30s yang menyerap keringat, lembut, dingin dan nyaman saat dipakai. Dan menggunakan sablon Plastisol yang pastinya tidak mudah luntur dan sangat awet</p><p><br></p><p>Size Kaos :</p><p>L : 69cm x 51cm</p><p>XL : 71cm x 52cm</p>', 240000, 'hoodie.jpg', 1),
+('5fb4b00573cd1', 'Kaos Anime', 'Anime', 'M,L,XL', '2', 5, '<p>Kaos ini bisa dipakai oleh pria ataupun wanita (unisex). Kaos ini terbuat dari bahan Cotton Combed 30s yang menyerap keringat, lembut, dingin dan nyaman saat dipakai. Dan menggunakan sablon Plastisol yang pastinya tidak mudah luntur dan sangat awet</p><p><br></p><p>Size Kaos :</p><p>M : 66cm x 49cm</p><p>L : 69cm x 51cm</p><p>XL : 71cm x 52cm</p><p>XXL : 74cm x 54cm</p>', 98000, 'anime.jpg', 1),
 ('5fb4b02aa530f', 'Kaos Elizabeth', 'Gintama', 'S,M,L,XL', '2', 5, '<p>Kaos ini bisa dipakai oleh pria ataupun wanita (unisex). Kaos ini terbuat dari bahan Cotton Combed 30s yang menyerap keringat, lembut, dingin dan nyaman saat dipakai. Dan menggunakan sablon Plastisol yang pastinya tidak mudah luntur dan sangat awet</p><p><br></p><p>Size Kaos :</p><p>M : 66cm x 49cm</p><p>L : 69cm x 51cm</p><p>XL : 71cm x 52cm</p><p>XXL : 74cm x 54cm</p>', 98000, 'gintama.jpg', 0),
 ('5fb4b06c8b76e', 'Kaos Happy', 'Fairy Tail', 'L,XL,XXL', '5', 5, '<p>Kaos ini bisa dipakai oleh pria ataupun wanita (unisex). Kaos ini terbuat dari bahan Cotton Combed 30s yang menyerap keringat, lembut, dingin dan nyaman saat dipakai. Dan menggunakan sablon Plastisol yang pastinya tidak mudah luntur dan sangat awet</p><p><br></p><p>Size Kaos :</p><p>M : 66cm x 49cm</p><p>L : 69cm x 51cm</p><p>XL : 71cm x 52cm</p><p>XXL : 74cm x 54cm</p>', 98000, 'hapi.jpg', 0),
-('5fb4b08e41896', 'Kaos Gon', 'Hunter X Hunter', 'L,XL,XXL', '5', 5, '<p>Kaos ini bisa dipakai oleh pria ataupun wanita (unisex). Kaos ini terbuat dari bahan Cotton Combed 30s yang menyerap keringat, lembut, dingin dan nyaman saat dipakai. Dan menggunakan sablon Plastisol yang pastinya tidak mudah luntur dan sangat awet</p><p><br></p><p>Size Kaos :</p><p>M : 66cm x 49cm</p><p>L : 69cm x 51cm</p><p>XL : 71cm x 52cm</p><p>XXL : 74cm x 54cm</p>', 98000, 'gon.jpg', 0),
-('5fb4b0d4bb9a8', 'Kaos God Usopp', 'One Piece', 'S,M,L,XL,XXL', '10', 5, '<p>Kaos ini bisa dipakai oleh pria ataupun wanita (unisex). Kaos ini terbuat dari bahan Cotton Combed 30s yang menyerap keringat, lembut, dingin dan nyaman saat dipakai. Dan menggunakan sablon Plastisol yang pastinya tidak mudah luntur dan sangat awet</p><p><br></p><p>Size Kaos :</p><p>M : 66cm x 49cm</p><p>L : 69cm x 51cm</p><p>XL : 71cm x 52cm</p><p>XXL : 74cm x 54cm</p>', 98000, 'hero.jpg', 0),
-('5fbd2a06e0248', 'Kaos Onigiri', 'Jepang', 'M,L,XL,XXL', '5', 5, '<p>Kaos ini bisa dipakai oleh pria ataupun wanita (unisex). Kaos ini terbuat dari bahan Cotton Combed 30s yang menyerap keringat, lembut, dingin dan nyaman saat dipakai. Dan menggunakan sablon Plastisol yang pastinya tidak mudah luntur dan sangat awet</p><p>Size Kaos :</p><p>M : 66cm x 49cm</p><p>L : 69cm x 51cm</p><p>XL : 71cm x 52cm</p><p>XXL : 74cm x 54cm</p>', 110000, 'onigiri.jpg', 0),
-('5fc4f3f8562fc', 'Bebas', 'Bebas', 'L,XL,XXL', '5', 5, '<p>ABCD</p>', 98000, 'anime1.jpg', NULL);
+('5fb4b08e41896', 'Kaos Gon', 'Hunter X Hunter', 'L,XL,XXL', '3', 5, '<p>Kaos ini bisa dipakai oleh pria ataupun wanita (unisex). Kaos ini terbuat dari bahan Cotton Combed 30s yang menyerap keringat, lembut, dingin dan nyaman saat dipakai. Dan menggunakan sablon Plastisol yang pastinya tidak mudah luntur dan sangat awet</p><p><br></p><p>Size Kaos :</p><p>M : 66cm x 49cm</p><p>L : 69cm x 51cm</p><p>XL : 71cm x 52cm</p><p>XXL : 74cm x 54cm</p>', 98000, 'gon.jpg', 0),
+('5fb4b0d4bb9a8', 'Kaos God Usopp', 'One Piece', 'S,M,L,XL,XXL', '5', 5, '<p>Kaos ini bisa dipakai oleh pria ataupun wanita (unisex). Kaos ini terbuat dari bahan Cotton Combed 30s yang menyerap keringat, lembut, dingin dan nyaman saat dipakai. Dan menggunakan sablon Plastisol yang pastinya tidak mudah luntur dan sangat awet</p><p><br></p><p>Size Kaos :</p><p>M : 66cm x 49cm</p><p>L : 69cm x 51cm</p><p>XL : 71cm x 52cm</p><p>XXL : 74cm x 54cm</p>', 98000, 'hero.jpg', 0),
+('5fbd2a06e0248', 'Kaos Onigiri', 'Jepang', 'M,L,XL,XXL', '3', 5, '<p>Kaos ini bisa dipakai oleh pria ataupun wanita (unisex). Kaos ini terbuat dari bahan Cotton Combed 30s yang menyerap keringat, lembut, dingin dan nyaman saat dipakai. Dan menggunakan sablon Plastisol yang pastinya tidak mudah luntur dan sangat awet</p><p>Size Kaos :</p><p>M : 66cm x 49cm</p><p>L : 69cm x 51cm</p><p>XL : 71cm x 52cm</p><p>XXL : 74cm x 54cm</p>', 110000, 'onigiri.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -276,9 +284,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `email`, `password`, `nomer_telp`, `tanggal_lahir`, `foto_profil`, `role_id`, `is_active`) VALUES
-('5fa7963b', 'Andika Permana Sidiq', 'andika@gmail.com', '$2y$10$4DipOGtUYRFbZQ953q6qSuQP812oYCu8v6nYhnrzVvzNZrOtf/Jau', '12345', '2020-11-04', 'user1606216321.jpg', 1, 1),
-('user5143', 'Andika Permana', 'andikapermanasidiq00@gmail.com', '$2y$10$LE58AXvv5LkVkkCTAMtcYeGZ21Q3BOsr15DV48xGVYzXWHVKN4faS', NULL, NULL, 'default.jpg', 2, 1),
-('user9046', 'Satou Kazuma', 'dika@gmail.com', '$2y$10$7mBRJP52sI.oYrlZ4m76peN/ys2EhUGIHbqAu6J4/IW8ul515wE5O', '085321874357', '1994-01-26', 'default.jpg', 2, 1);
+('5fa7963b', 'Andika Permana Sidiq', 'andika@gmail.com', '$2y$10$4DipOGtUYRFbZQ953q6qSuQP812oYCu8v6nYhnrzVvzNZrOtf/Jau', '12345', '2020-11-04', 'user1607344895.jpg', 1, 1),
+('user4735', 'Andika pembeli', 'andikapermanasidiq00@gmail.com', '$2y$10$4DipOGtUYRFbZQ953q6qSuQP812oYCu8v6nYhnrzVvzNZrOtf/Jau', '98080238', '2020-12-07', 'default.jpg', 2, 1),
+('user9046', 'Dika', 'dika@gmail.com', '$2y$10$7mBRJP52sI.oYrlZ4m76peN/ys2EhUGIHbqAu6J4/IW8ul515wE5O', '085321874357', '1994-01-26', 'default.jpg', 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -377,37 +385,37 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `alamat`
 --
 ALTER TABLE `alamat`
-  MODIFY `id_alamat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_alamat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `bank`
 --
 ALTER TABLE `bank`
-  MODIFY `id_bank` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_bank` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `diskon`
 --
 ALTER TABLE `diskon`
-  MODIFY `id_diskon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_diskon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `favorit`
 --
 ALTER TABLE `favorit`
-  MODIFY `id_favorit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_favorit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT untuk tabel `kontak`
@@ -425,7 +433,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT untuk tabel `token`
 --
 ALTER TABLE `token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

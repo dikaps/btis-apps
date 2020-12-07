@@ -232,7 +232,7 @@ class Produk_model extends CI_Model
   public function getDiskonJoin()
   {
     $query = "
-      SELECT * FROM diskon
+      SELECT produk.*, diskon.* FROM diskon
       JOIN produk ON produk.id_produk = diskon.id_produk
       WHERE produk.stok > 0
     ";

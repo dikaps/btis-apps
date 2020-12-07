@@ -85,9 +85,10 @@ class Profile extends CI_Controller
 
   public function editBank($id)
   {
-    $this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required|trim|is_unique[bank.nama_bank]');
-    $this->form_validation->set_rules('norek', 'Nomor Rekening', 'required|trim|numeric');
+    $this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required|trim');
+    $this->form_validation->set_rules('norek', 'Nomor Rekening', 'required');
     $this->form_validation->set_rules('atas_nama', 'Atas Nama', 'required|trim');
+
     if ($this->form_validation->run() == false) {
       $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-pesan col">Ada kesalahan dalam penginputan bank!</div>');
       redirect('profile');

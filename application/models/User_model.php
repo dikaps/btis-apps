@@ -25,12 +25,12 @@ class User_model extends CI_Model
 
   private function _upload($old_image)
   {
-    // var_dump($_FILES['foto']);
-    // die;
+
     $image = $_FILES['foto']['name'];
     if (!$image) {
       return $old_image;
     }
+
     $type = explode(".", $image);
     $type = strtolower(end($type));
     $image_valid = ['jpg', 'jpeg', 'png'];
@@ -46,21 +46,15 @@ class User_model extends CI_Model
       $config['max_size']             = 3000;
       $config['file_name']            = 'user' . time();
 
-      if ($_FILES['foto']['size'] > $config['max_size']) {
-        $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-pesan">File yang di upload terlalu besar!</div>');
-        redirect('profile');
-        // return $old_image;
-      }
-
       $this->load->library('upload', $config);
 
       if ($this->upload->do_upload('foto')) {
-        // $old_image = $old_image;
-        if ($old_image != 'default.png') {
+        if ($old_image != 'default.jpg') {
           unlink(FCPATH . 'assets/img/profile/' . $old_image);
+          return $this->upload->data('file_name');
+        } else {
+          return $this->upload->data('file_name');
         }
-
-        return $this->upload->data('file_name');
       } else {
         $this->upload->display_errors();
       }

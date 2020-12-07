@@ -52,7 +52,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`id_user`,`username`,`email`,`password`,`nomer_telp`,`tanggal_lahir`,`foto_profil`,`role_id`,`is_active`) values ('5fa7963b','Andika Permana Sidiq','andika@gmail.com','$2y$10$4DipOGtUYRFbZQ953q6qSuQP812oYCu8v6nYhnrzVvzNZrOtf/Jau','12345','2020-11-04','user1606216321.jpg',1,1),('user5143','Andika Permana','andikapermanasidiq00@gmail.com','$2y$10$LE58AXvv5LkVkkCTAMtcYeGZ21Q3BOsr15DV48xGVYzXWHVKN4faS',NULL,NULL,'default.jpg',2,1),('user9046','Satou Kazuma','dika@gmail.com','$2y$10$7mBRJP52sI.oYrlZ4m76peN/ys2EhUGIHbqAu6J4/IW8ul515wE5O','085321874357','1994-01-26','default.jpg',2,1);
+insert  into `user`(`id_user`,`username`,`email`,`password`,`nomer_telp`,`tanggal_lahir`,`foto_profil`,`role_id`,`is_active`) values ('5fa7963b','Andika Permana Sidiq','andika@gmail.com','$2y$10$4DipOGtUYRFbZQ953q6qSuQP812oYCu8v6nYhnrzVvzNZrOtf/Jau','12345','2020-11-04','user1607344895.jpg',1,1),('user4735','Andika pembeli','andikapermanasidiq00@gmail.com','$2y$10$4DipOGtUYRFbZQ953q6qSuQP812oYCu8v6nYhnrzVvzNZrOtf/Jau','98080238','2020-12-07','default.jpg',2,1),('user9046','Dika','dika@gmail.com','$2y$10$7mBRJP52sI.oYrlZ4m76peN/ys2EhUGIHbqAu6J4/IW8ul515wE5O','085321874357','1994-01-26','default.jpg',2,1);
 
 /*Table structure for table `alamat` */
 
@@ -71,7 +71,7 @@ CREATE TABLE `alamat` (
 
 /*Data for the table `alamat` */
 
-insert  into `alamat`(`id_alamat`,`alamat`,`penerima`,`telepon_penerima`,`id_user`) values (1,'Kp. Walahar 1 RT 009/003, Desa Bantarwaru, Kec. Gantar, Kab. Indramayu','Andika Permana Sidiq','62 853 2187 4357','user9046'),(4,'Jl. Sukajaya Kaler No. 44 RT.05/04, Kel. Cibabat Kec. Cimahi Utara','Satou Kazuma','08888888888','user9046'),(8,'ABCDEFGH','Andika','12345','user5143');
+insert  into `alamat`(`id_alamat`,`alamat`,`penerima`,`telepon_penerima`,`id_user`) values (1,'Kp. Walahar 1 RT 009/003, Desa Bantarwaru, Kec. Gantar, Kab. Indramayu','Andika Permana Sidiq','62 853 2187 4357','user9046'),(4,'Jl. Sukajaya Kaler No. 44 RT.05/04, Kel. Cibabat Kec. Cimahi Utara','Satou Kazuma','08888888888','user9046'),(12,'Kp. Walahar 1 RT 009/003, Desa Bantarwaru, Kec. Gantar, Kab. Indramayu','Andika','131231231','user4735');
 
 /*Table structure for table `bank` */
 
@@ -87,7 +87,7 @@ CREATE TABLE `bank` (
 
 /*Data for the table `bank` */
 
-insert  into `bank`(`id_bank`,`nama_bank`,`norek`,`atas_nama`) values (1,'BRI','3388 - 01 - 028216 - 53 - 5','Pikapikani'),(3,'BNI','0856577142','Pikapikani');
+insert  into `bank`(`id_bank`,`nama_bank`,`norek`,`atas_nama`) values (1,'BRI','3388 - 01 - 028216 - 53 - 5','Pikapikani'),(3,'BNI','0856577142','Pikapikani'),(6,'BJB','54321 555 4321','Pikapikani');
 
 /*Table structure for table `kategori` */
 
@@ -143,7 +143,7 @@ CREATE TABLE `diskon` (
 
 /*Data for the table `diskon` */
 
-insert  into `diskon`(`id_diskon`,`id_produk`,`besar_diskon`,`is_active`) values (1,'5fb4b08e41896',20,1),(2,'5fb4b06c8b76e',15,1);
+insert  into `diskon`(`id_diskon`,`id_produk`,`besar_diskon`,`is_active`) values (1,'5fb4b08e41896',20,1),(2,'5fb4b06c8b76e',15,1),(4,'5fb4afd571bfb',5,1);
 
 /*Table structure for table `favorit` */
 
@@ -233,7 +233,7 @@ CREATE TABLE `pesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `pesanan` */
-
+insert  into `pesanan`(`id_pesanan`,`id_produk`,`id_alamat`,`id_bank`,`id_user`,`ukuran_produk`,`jml_beli`,`total_bayar`,`kurir`,`resi_pengiriman`,`status_pengiriman`,`bukti_transfer`,`status_pembayaran`,`status_pemesanan`) values ('ps-user4735-1607318093','5fbd2a06e0248',12,1,'user4735','XL',2,220000,'J&T Express','88888888',1,'bukti20201207121529.png',1,1);
 /*Table structure for table `token` */
 
 DROP TABLE IF EXISTS `token`;

@@ -12,7 +12,7 @@ class Favorit extends CI_Controller
 
   public function index()
   {
-    $data['judul'] = "BTis | Profile";
+    $data['judul'] = "BTis | Favorit";
     $data['user'] = $this->User_model->cekData('email', $this->session->userdata('email'));
     $data['kontak'] = $this->db->get('kontak')->row_array();
 
