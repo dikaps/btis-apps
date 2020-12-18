@@ -22,7 +22,7 @@ class Pesanan_model extends CI_Model
     $this->db->join('produk', 'produk.id_produk = pesanan.id_produk');
     $this->db->join('alamat', 'alamat.id_alamat = pesanan.id_alamat');
     $this->db->join('user', 'user.id_user = pesanan.id_user');
-    $this->db->where('pesanan.status_pemesanan', $status, 'id_user', $user);
+    $this->db->where('pesanan.id_user', $user,  'pesanan.status_pemesanan', $status);
     return $this->db->get()->result_array();
   }
 
